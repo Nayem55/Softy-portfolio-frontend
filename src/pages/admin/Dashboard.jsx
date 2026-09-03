@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext'
 import { 
   LayoutDashboard, Image, Package, Megaphone, BookOpen, 
   MessageSquare, Mail, Footprints, Navigation, Radio,
-  LogOut, ArrowLeft, Settings
+  LogOut, ArrowLeft, Settings, FileText
 } from 'lucide-react'
 
 const sections = [
@@ -16,6 +16,7 @@ const sections = [
   { title: 'Footer', desc: 'Footer columns, links, copyright', icon: Footprints, path: '/admin/footer', color: '#756563' },
   { title: 'Navbar', desc: 'Navigation bar and brand', icon: Navigation, path: '/admin/navbar', color: '#b22d5d' },
   { title: 'Marquee', desc: 'Scrolling marquee text items', icon: Radio, path: '/admin/marquee', color: '#54142c' },
+  { title: 'Pages', desc: 'Edit collection, story, philosophy, and contact pages', icon: FileText, path: '/admin/pages', color: '#183b7a' },
   { title: 'Brands', desc: 'Manage brand portfolio and logos', icon: Package, path: '/admin/brands', color: '#7a183a' },
   { title: 'Categories', desc: 'Manage product categories', icon: Package, path: '/admin/categories', color: '#b22d5d' },
 ]

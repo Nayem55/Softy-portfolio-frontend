@@ -26,6 +26,7 @@ import ManageNavbar from './pages/admin/ManageNavbar'
 import ManageMarquee from './pages/admin/ManageMarquee'
 import ManageBrands from './pages/admin/ManageBrands'
 import ManageCategories from './pages/admin/ManageCategories'
+import ManagePages from './pages/admin/ManagePages'
 
 function ProtectedRoute({ children }) {
   const { admin, loading } = useAuth() || { admin: null, loading: true }
@@ -75,6 +76,7 @@ function App() {
             <Route path="/admin/marquee" element={<ProtectedRoute><ManageMarquee /></ProtectedRoute>} />
             <Route path="/admin/brands" element={<ProtectedRoute><ManageBrands /></ProtectedRoute>} />
             <Route path="/admin/categories" element={<ProtectedRoute><ManageCategories /></ProtectedRoute>} />
+            <Route path="/admin/pages" element={<ProtectedRoute><ManagePages /></ProtectedRoute>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </DataProvider>

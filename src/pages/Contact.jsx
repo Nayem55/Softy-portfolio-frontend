@@ -42,7 +42,15 @@ const supportCards = [
 export default function Contact() {
   const { content } = useData()
   const cta = content?.cta || {}
-  const email = cta.email || contactEmail
+  const page = content?.pages?.contact || {}
+  const email = page.email || cta.email || contactEmail
+  const contactPhone = page.phone || phone
+  const contactAddress = page.address || address
+  const contactWhatsappUrl = page.whatsappUrl || whatsappUrl
+  const contactFacebookUrl = page.facebookUrl || facebookUrl
+  const pageInquiryTypes = page.inquiryTypes || inquiryTypes
+  const pageSupportCards = page.supportCards || supportCards
+  const businessHours = (page.businessHours || 'Saturday to Thursday: 9:00 AM to 6:00 PM\nFriday: Limited support').split('\n')
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -74,16 +82,16 @@ export default function Contact() {
               <ScrollReveal>
                 <span className="uppercase tracking-[0.18em] text-[0.74rem] font-bold text-[var(--color-wine)] inline-flex items-center gap-2.5 mb-5">
                   <span className="w-7 h-px bg-[var(--color-wine)]" />
-                  Contact SoftyyBD
+                  {page.eyebrow || 'Contact SoftyyBD'}
                 </span>
                 <h1 className="mb-0" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400, fontSize: 'clamp(3rem, 7vw, 6rem)', lineHeight: 0.95 }}>
-                  Let us make care easier to reach.
+                  {page.title || 'Let us make care easier to reach.'}
                 </h1>
                 <p className="mt-5 text-[var(--color-muted)] text-[1.05rem] leading-[1.75] max-w-[640px]">
-                  Reach Global Cosmetics Line's for distribution, retail partnerships, customer support, collaborations, press requests, and brand inquiries.
+                  {page.description || 'Reach Global Cosmetics Line\'s for distribution, retail partnerships, customer support, collaborations, press requests, and brand inquiries.'}
                 </p>
                 <div className="flex gap-3 flex-wrap mt-8">
-                  <a href={whatsappUrl} className="inline-flex items-center gap-2 rounded-[8px] px-7 py-3.5 bg-[var(--color-primary)] text-white font-semibold text-[0.88rem] transition-all duration-300 hover:bg-[#14307a] hover:-translate-y-0.5">
+                  <a href={contactWhatsappUrl} className="inline-flex items-center gap-2 rounded-[8px] px-7 py-3.5 bg-[var(--color-primary)] text-white font-semibold text-[0.88rem] transition-all duration-300 hover:bg-[#14307a] hover:-translate-y-0.5">
                     <MessageCircle size={16} />
                     WhatsApp
                   </a>
@@ -100,9 +108,9 @@ export default function Contact() {
                   <div className="space-y-5">
                     {[
                       { icon: Mail, label: 'Email', value: email, href: `mailto:${email}` },
-                      { icon: Phone, label: 'Phone', value: phone, href: `tel:${phone}` },
-                      { icon: MessageCircle, label: 'WhatsApp', value: phone, href: whatsappUrl },
-                      { icon: ExternalLink, label: 'Facebook', value: 'facebook.com/softyybd', href: facebookUrl },
+                      { icon: Phone, label: 'Phone', value: contactPhone, href: `tel:${contactPhone}` },
+                      { icon: MessageCircle, label: 'WhatsApp', value: contactPhone, href: contactWhatsappUrl },
+                      { icon: ExternalLink, label: 'Facebook', value: contactFacebookUrl.replace(/^https?:\/\//, ''), href: contactFacebookUrl },
                     ].map((item) => (
                       <a key={item.label} href={item.href} className="group flex items-center gap-4 rounded-[8px] border border-[var(--color-line)] p-4 transition-all duration-300 hover:bg-[var(--color-rose)]">
                         <div className="w-11 h-11 rounded-[8px] bg-[var(--color-rose)] grid place-items-center shrink-0 group-hover:bg-white">
@@ -148,7 +156,7 @@ export default function Contact() {
                     <div>
                       <label className="block text-xs font-bold text-[var(--color-ink)] mb-2 uppercase tracking-wider">Subject</label>
                       <select name="subject" className="w-full px-4 py-3 rounded-[8px] border border-[var(--color-line)] bg-white text-[var(--color-ink)] text-sm outline-none focus:border-[var(--color-primary)] transition-colors">
-                        {inquiryTypes.map((type) => <option key={type}>{type}</option>)}
+                        {pageInquiryTypes.map((type) => <option key={type}>{type}</option>)}
                       </select>
                     </div>
                     <div>
@@ -168,30 +176,34 @@ export default function Contact() {
                   <div className="bg-[var(--color-paper)] rounded-[8px] p-8 border border-[var(--color-line)] premium-card">
                     <MapPin size={24} className="text-[var(--color-primary)] mb-5" />
                     <h3 className="mb-3" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400, fontSize: '1.7rem', color: 'var(--color-ink)' }}>
-                      Office
+                      {page.officeTitle || 'Office'}
                     </h3>
-                    <p className="text-[var(--color-muted)] text-[0.92rem] leading-[1.7] m-0">{address}</p>
+                    <p className="text-[var(--color-muted)] text-[0.92rem] leading-[1.7] m-0">{contactAddress}</p>
                   </div>
 
                   <div className="bg-[var(--color-paper)] rounded-[8px] p-8 border border-[var(--color-line)] premium-card">
                     <Clock size={24} className="text-[var(--color-primary)] mb-5" />
                     <h3 className="mb-3" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400, fontSize: '1.7rem', color: 'var(--color-ink)' }}>
-                      Business Hours
+                      {page.hoursTitle || 'Business Hours'}
                     </h3>
                     <p className="text-[var(--color-muted)] text-[0.92rem] leading-[1.8] m-0">
-                      Saturday to Thursday: 9:00 AM to 6:00 PM<br />
-                      Friday: Limited support
+                      {businessHours.map((line) => (
+                        <span key={line} className="block">{line}</span>
+                      ))}
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
-                    {supportCards.map((item) => (
-                      <article key={item.title} className="rounded-[8px] bg-white border border-[var(--color-line)] p-5">
-                        <item.icon size={20} className="text-[var(--color-primary)] mb-3" />
-                        <strong className="block text-[0.9rem] text-[var(--color-ink)]">{item.title}</strong>
-                        <p className="m-0 mt-2 text-[0.8rem] text-[var(--color-muted)] leading-[1.6]">{item.text}</p>
-                      </article>
-                    ))}
+                    {pageSupportCards.map((item, index) => {
+                      const Icon = [Truck, PackageCheck, ShieldCheck][index] || ShieldCheck
+                      return (
+                        <article key={item.title} className="rounded-[8px] bg-white border border-[var(--color-line)] p-5">
+                          <Icon size={20} className="text-[var(--color-primary)] mb-3" />
+                          <strong className="block text-[0.9rem] text-[var(--color-ink)]">{item.title}</strong>
+                          <p className="m-0 mt-2 text-[0.8rem] text-[var(--color-muted)] leading-[1.6]">{item.text}</p>
+                        </article>
+                      )
+                    })}
                   </div>
                 </div>
               </ScrollReveal>

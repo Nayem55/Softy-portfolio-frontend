@@ -184,7 +184,17 @@ const isDemoContent = (value) => {
     'arowbee.com',
   ].some((needle) => text.includes(needle))
 }
-const normalizeContent = (value) => isDemoContent(value) ? { ...value, ...softyyContent } : value
+const normalizeContent = (value) => {
+  if (!isDemoContent(value)) return value
+  return {
+    ...value,
+    ...softyyContent,
+    pages: {
+      ...softyyContent.pages,
+      ...(value?.pages || {}),
+    },
+  }
+}
 
 const fallbackBrands = [
   {
@@ -457,8 +467,9 @@ export function DataProvider({ children }) {
 
   const updateContent = async (data) => {
     const res = await api.put('/content', data)
-    setContent(res.data)
-    return res.data
+    const normalized = normalizeContent(res.data)
+    setContent(normalized)
+    return normalized
   }
 
   const createProduct = async (data) => {
