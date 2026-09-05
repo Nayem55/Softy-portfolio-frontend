@@ -273,6 +273,7 @@ export default function ManagePages() {
                 <Field label="Eyebrow" value={current.eyebrow} onChange={(value) => updatePage('philosophy', 'eyebrow', value)} />
                 <Field label="Title" value={current.title} onChange={(value) => updatePage('philosophy', 'title', value)} />
                 <TextArea label="Description" value={current.description} onChange={(value) => updatePage('philosophy', 'description', value)} />
+                <Field label="Quality Image URL" value={current.image} onChange={(value) => updatePage('philosophy', 'image', value)} />
               </SectionCard>
               <SectionCard title="Statement Card">
                 <TextArea label="Statement" value={current.statement} onChange={(value) => updatePage('philosophy', 'statement', value)} />

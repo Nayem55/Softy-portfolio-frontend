@@ -51,6 +51,7 @@ export default function Philosophy() {
   const pagePrinciples = page.principles || principles
   const pageStandards = page.standards || standards
   const pagePolicyCards = page.policyCards || policyCards
+  const pageImage = page.image || '/editorial/softyy-lab-ritual.png'
 
   return (
     <>
@@ -130,7 +131,7 @@ export default function Philosophy() {
             <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 items-center">
               <ScrollReveal>
                 <div className="rounded-[8px] border border-[var(--color-line)] media-frame p-8 premium-card">
-                  <img src="/products/softyy/acne-serum.jpg" alt="Softyy Acne Control Serum" className="w-full max-h-[430px] object-contain" />
+                  <img src={pageImage} alt="Softyy quality ritual" className="w-full max-h-[430px] object-cover aspect-[1.22/1] rounded-[8px]" />
                 </div>
               </ScrollReveal>
 

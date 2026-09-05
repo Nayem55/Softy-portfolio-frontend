@@ -11,6 +11,18 @@ export const softyyContent = {
     description: 'SoftyyBD brings authentic skincare and freshness essentials to Bangladesh with practical formulas, careful sourcing, and support people can actually reach.',
     primaryBtn: 'Explore the Collection',
     secondaryBtn: 'Our Story',
+    image: '/editorial/softyy-hero-editorial.png',
+    floatingCard: {
+      small: 'Current Focus',
+      title: 'Oil Control',
+      desc: 'Daily cleansers and serum care for humid-weather routines.',
+      image: '/products/softyy/acne-serum.jpg',
+    },
+    stats: [
+      { label: '100% Authentic', sublabel: 'Zero counterfeit policy' },
+      { label: 'In-house Lab', sublabel: 'R&D guided quality' },
+      { label: 'BD-wide', sublabel: 'Reliable delivery' },
+    ],
   },
   marquee: {
     items: ['Authentic products', 'In-house quality care', 'Bangladesh-wide delivery', 'SoftyyBD', 'Fresh Daily'],
@@ -49,6 +61,7 @@ export const softyyContent = {
     title: 'For retail, distribution, or customer care, talk to the SoftyyBD team.',
     description: 'Connect with Global Cosmetics Line\'s for partnerships, product questions, delivery support, and brand inquiries.',
     email: 'globalcosmeticslines@gmail.com',
+    image: '/editorial/softyy-boutique-care.png',
   },
   footer: {
     description: 'Authentic skincare and freshness essentials from Global Cosmetics Line\'s. Feel The Pure Softness.',
@@ -121,6 +134,7 @@ export const softyyContent = {
       description: 'SoftyyBD believes healthy skin should feel accessible, transparent, and dependable. The philosophy is practical: verified products, fair value, careful formulation, and support that respects the customer.',
       statement: 'Beauty should never ask customers to choose between confidence, clarity, and care.',
       statementDetail: 'That is why SoftyyBD combines authenticity, quality control, and accessible pricing into one customer promise.',
+      image: '/editorial/softyy-lab-ritual.png',
       principlesEyebrow: 'Operating Principles',
       principlesTitle: 'The rules behind the SoftyyBD experience.',
       principles: [
