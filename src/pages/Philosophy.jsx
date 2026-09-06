@@ -4,27 +4,27 @@ import CTA from '../components/CTA'
 import Footer from '../components/Footer'
 import Grain from '../components/Grain'
 import ScrollReveal from '../components/ScrollReveal'
+import BrandGlyph from '../components/BrandGlyph'
 import { useData } from '../context/DataContext'
-import { ArrowRight, BadgeCheck, ClipboardCheck, FlaskConical, PackageCheck, ShieldCheck, Sparkles, Truck } from 'lucide-react'
 
 const principles = [
   {
-    icon: ShieldCheck,
+    mark: 'A',
     title: 'Authenticity is non-negotiable',
     text: 'A strict zero-counterfeit position protects customer trust and keeps the portfolio focused on verified products.',
   },
   {
-    icon: FlaskConical,
+    mark: 'Q',
     title: 'Quality starts before launch',
     text: 'R&D, chemist guidance, and inspection routines help each formula move from idea to shelf with better discipline.',
   },
   {
-    icon: Sparkles,
+    mark: 'U',
     title: 'Useful luxury over excess',
     text: 'Products are designed around daily needs: oil control, brightening, cleansing, soothing, freshness, and confidence.',
   },
   {
-    icon: Truck,
+    mark: 'C',
     title: 'The experience matters',
     text: 'Ordering, confirmation, packaging, delivery, and support are treated as part of the product promise.',
   },
@@ -75,7 +75,7 @@ export default function Philosophy() {
                 <div className="flex gap-3 flex-wrap mt-8">
                   <Link to="/collection" className="inline-flex items-center gap-2 rounded-[8px] px-7 py-3.5 gcl-button text-white font-bold text-[0.88rem] transition-all duration-300 hover:-translate-y-0.5">
                     See Products
-                    <ArrowRight size={16} />
+                    <BrandGlyph label="arrow" tone="button" />
                   </Link>
                   <Link to="/story" className="inline-flex items-center gap-2 rounded-[8px] px-7 py-3.5 bg-white border border-[var(--color-line)] text-[var(--color-ink)] font-semibold text-[0.88rem] transition-all duration-300 hover:bg-[var(--color-rose)]">
                     Read Our Story
@@ -86,7 +86,7 @@ export default function Philosophy() {
               <ScrollReveal delay={0.12}>
                 <div className="rounded-[8px] bg-[var(--color-primary)] text-white p-9 overflow-hidden relative">
                   <div className="absolute right-6 top-4 text-[9rem] leading-none opacity-10" style={{ fontFamily: 'var(--font-italiana)' }}>01</div>
-                  <BadgeCheck size={34} className="text-[var(--color-warm)] mb-8 relative z-[1]" />
+                  <BrandGlyph label="GCL" tone="dark" className="mb-8 relative z-[1]" />
                   <p className="relative z-[1] m-0 text-[clamp(1.55rem,3vw,2.45rem)] leading-[1.22]" style={{ fontFamily: 'var(--font-italiana)' }}>
                     {page.statement || 'Beauty should never ask customers to choose between confidence, clarity, and care.'}
                   </p>
@@ -109,13 +109,10 @@ export default function Philosophy() {
             </ScrollReveal>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {pagePrinciples.map((item, index) => {
-                const Icon = [ShieldCheck, FlaskConical, Sparkles, Truck][index] || ShieldCheck
                 return (
                   <ScrollReveal key={item.title} delay={index * 0.06}>
                     <article className="h-full rounded-[8px] bg-white border border-[var(--color-line)] p-6 premium-card">
-                      <div className="w-12 h-12 rounded-[8px] bg-[var(--color-rose)] grid place-items-center mb-5">
-                        <Icon size={22} className="text-[var(--color-primary)]" />
-                      </div>
+                      <BrandGlyph label={item.mark || String(index + 1).padStart(2, '0')} tone="light" className="mb-5" />
                       <h3 className="m-0 mb-3 text-[1rem] font-bold text-[var(--color-ink)]">{item.title}</h3>
                       <p className="m-0 text-[0.88rem] text-[var(--color-muted)] leading-[1.7]">{item.text}</p>
                     </article>
@@ -144,9 +141,9 @@ export default function Philosophy() {
                   {page.checklistTitle || 'Premium means the details are easier to trust.'}
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-8">
-                  {pageStandards.map((item) => (
+                  {pageStandards.map((item, index) => (
                     <div key={item} className="flex items-start gap-3 rounded-[8px] bg-white border border-[var(--color-line)] p-4">
-                      <ClipboardCheck size={18} className="text-[var(--color-primary)] shrink-0 mt-0.5" />
+                      <BrandGlyph label={String(index + 1).padStart(2, '0')} tone="mini" className="shrink-0 mt-0.5" />
                       <span className="text-[0.9rem] leading-[1.5] text-[var(--color-muted)]">{item}</span>
                     </div>
                   ))}
@@ -166,11 +163,10 @@ export default function Philosophy() {
             </ScrollReveal>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {pagePolicyCards.map((item, index) => {
-                const Icon = index === 0 ? Truck : index === 1 ? PackageCheck : ShieldCheck
                 return (
                   <ScrollReveal key={item.title} delay={index * 0.06}>
                     <article className="h-full rounded-[8px] bg-white border border-[var(--color-line)] p-7 premium-card">
-                      <Icon size={24} className="text-[var(--color-primary)] mb-5" />
+                      <BrandGlyph label={['D', 'E', 'P'][index] || String(index + 1)} tone="light" className="mb-5" />
                       <h3 className="m-0 mb-3 text-[1.35rem]" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400 }}>{item.title}</h3>
                       <p className="m-0 text-[0.9rem] text-[var(--color-muted)] leading-[1.7]">{item.detail}</p>
                     </article>

@@ -77,6 +77,160 @@ button, input, textarea, select { font: inherit; }
   line-height: 1;
 }
 
+.brand-glyph {
+  align-items: center;
+  border-radius: 14px;
+  display: inline-flex;
+  height: 2.65rem;
+  justify-content: center;
+  line-height: 1;
+  overflow: hidden;
+  position: relative;
+  width: 2.65rem;
+}
+
+.brand-glyph::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(44, 53, 132, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  opacity: 1;
+}
+
+.brand-glyph svg {
+  height: 1.18rem;
+  position: relative;
+  width: 1.18rem;
+  z-index: 1;
+}
+
+.brand-glyph-light,
+.brand-glyph-soft,
+.brand-glyph-inline,
+.brand-glyph-mini {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.96), rgba(238,242,251,0.88)),
+    radial-gradient(circle at 28% 20%, rgba(84,127,88,0.16), transparent 36%);
+  box-shadow: 0 12px 26px rgba(31, 43, 91, 0.07);
+  color: var(--color-primary);
+}
+
+.brand-glyph-soft {
+  height: 1.75rem;
+  width: 1.75rem;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.brand-glyph-inline,
+.brand-glyph-button {
+  height: 1.45rem;
+  width: 1.45rem;
+  border-radius: 9px;
+}
+
+.brand-glyph-soft svg,
+.brand-glyph-inline svg,
+.brand-glyph-button svg,
+.brand-glyph-mini svg {
+  height: 0.9rem;
+  width: 0.9rem;
+}
+
+.brand-glyph-button {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.brand-glyph-mini {
+  height: 1.55rem;
+  width: 1.55rem;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.brand-glyph-dark {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #ffffff;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 16px;
+}
+
+.brand-glyph-dark::before,
+.brand-glyph-button::before,
+.brand-glyph-dock::before,
+.brand-glyph-dockActive::before {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.brand-glyph-dark svg {
+  height: 1.35rem;
+  width: 1.35rem;
+}
+
+.brand-glyph-dock,
+.brand-glyph-dockActive {
+  height: 1.7rem;
+  width: 1.7rem;
+  border-radius: 11px;
+}
+
+.brand-glyph-dock svg,
+.brand-glyph-dockActive svg {
+  height: 0.94rem;
+  width: 0.94rem;
+}
+
+.brand-glyph-dock {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.72);
+}
+
+.brand-glyph-dockActive {
+  background: rgba(255,255,255,0.18);
+  color: #ffffff;
+}
+
+.menu-mark {
+  height: 14px;
+  position: relative;
+  width: 18px;
+}
+
+.menu-mark::before,
+.menu-mark::after {
+  background: currentColor;
+  border-radius: 999px;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  transition: transform 0.25s ease, top 0.25s ease;
+  width: 18px;
+}
+
+.menu-mark::before {
+  top: 3px;
+}
+
+.menu-mark::after {
+  top: 10px;
+}
+
+.menu-mark.open::before {
+  top: 7px;
+  transform: rotate(42deg);
+}
+
+.menu-mark.open::after {
+  top: 7px;
+  transform: rotate(-42deg);
+}
+
 .nav-link {
   color: var(--color-ink) !important;
   position: relative;
@@ -331,7 +485,7 @@ button, input, textarea, select { font: inherit; }
   font-weight: 800;
   gap: 0.5rem;
   min-height: 42px;
-  padding: 0.6rem 0.85rem;
+  padding: 0.48rem 0.85rem 0.48rem 0.56rem;
 }
 
 .product-card-premium {

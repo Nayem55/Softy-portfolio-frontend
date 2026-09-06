@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useData } from '../context/DataContext'
 import ScrollReveal from './ScrollReveal'
-import { ArrowRight } from 'lucide-react'
+import BrandGlyph from './BrandGlyph'
 
 export default function BrandsSection() {
   const { brands, products } = useData()
@@ -57,7 +57,7 @@ export default function BrandsSection() {
                     </span>
                     <span className="flex items-center gap-2 text-[0.78rem] font-semibold text-[var(--color-primary)] uppercase tracking-wider group-hover:gap-3 transition-all duration-300">
                     View Collection
-                    <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                    <BrandGlyph label="arrow" tone="inline" />
                     </span>
                   </div>
                 </div>

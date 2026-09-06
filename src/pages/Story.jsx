@@ -4,8 +4,8 @@ import CTA from '../components/CTA'
 import Footer from '../components/Footer'
 import Grain from '../components/Grain'
 import ScrollReveal from '../components/ScrollReveal'
+import BrandGlyph from '../components/BrandGlyph'
 import { useData } from '../context/DataContext'
-import { ArrowRight, BadgeCheck, FlaskConical, HeartHandshake, MapPin, ShieldCheck, Sparkles } from 'lucide-react'
 
 const chapters = [
   {
@@ -26,10 +26,10 @@ const chapters = [
 ]
 
 const promises = [
-  { icon: ShieldCheck, title: 'Zero counterfeit policy', text: 'Products are sourced through the company brand family and authorized manufacturing relationships.' },
-  { icon: FlaskConical, title: 'Lab-guided standards', text: 'Experienced chemists and R&D practice guide formulation, inspection, and product development.' },
-  { icon: Sparkles, title: 'All skin type focus', text: 'Care formats are developed for diverse skin concerns, from oil control to soothing moisture.' },
-  { icon: HeartHandshake, title: 'Support-led shopping', text: 'Clear contact channels, order confirmation, and nationwide delivery keep the experience dependable.' },
+  { mark: 'A', title: 'Zero counterfeit policy', text: 'Products are sourced through the company brand family and authorized manufacturing relationships.' },
+  { mark: 'Q', title: 'Lab-guided standards', text: 'Experienced chemists and R&D practice guide formulation, inspection, and product development.' },
+  { mark: 'S', title: 'All skin type focus', text: 'Care formats are developed for diverse skin concerns, from oil control to soothing moisture.' },
+  { mark: 'C', title: 'Support-led shopping', text: 'Clear contact channels, order confirmation, and nationwide delivery keep the experience dependable.' },
 ]
 
 export default function StoryPage() {
@@ -65,7 +65,7 @@ export default function StoryPage() {
                 <div className="flex gap-3 flex-wrap mt-8">
                   <Link to="/collection" className="inline-flex items-center gap-2 rounded-[8px] px-7 py-3.5 gcl-button text-white font-bold text-[0.88rem] transition-all duration-300 hover:-translate-y-0.5">
                     Explore Collection
-                    <ArrowRight size={16} />
+                    <BrandGlyph label="arrow" tone="button" />
                   </Link>
                   <Link to="/contact" className="inline-flex items-center gap-2 rounded-[8px] px-7 py-3.5 bg-white border border-[var(--color-line)] text-[var(--color-ink)] font-semibold text-[0.88rem] transition-all duration-300 hover:bg-[var(--color-rose)]">
                     Partner With Us
@@ -127,7 +127,7 @@ export default function StoryPage() {
                   {page.trustDescription || 'The company is based in Dhaka and serves customers through clear product information, reliable support, and delivery-focused operations.'}
                 </p>
                 <div className="mt-8 flex items-start gap-4 rounded-[8px] bg-white border border-[var(--color-line)] p-6">
-                  <MapPin size={22} className="text-[var(--color-primary)] shrink-0 mt-1" />
+                  <BrandGlyph label="BD" tone="light" className="shrink-0" />
                   <div>
                     <strong className="block text-[var(--color-ink)]">Global Cosmetics Lines</strong>
                     <span className="block text-[0.9rem] text-[var(--color-muted)] mt-1">{page.address || '64/68 North Kamalapur, Dhaka - 1217, Bangladesh'}</span>
@@ -137,13 +137,10 @@ export default function StoryPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {pagePromises.map((item, index) => {
-                  const Icon = [ShieldCheck, FlaskConical, Sparkles, HeartHandshake][index] || ShieldCheck
                   return (
                   <ScrollReveal key={item.title} delay={index * 0.06}>
                     <article className="h-full rounded-[8px] bg-white border border-[var(--color-line)] p-6 premium-card">
-                      <div className="w-12 h-12 rounded-[8px] bg-[var(--color-rose)] grid place-items-center mb-5">
-                        <Icon size={22} className="text-[var(--color-primary)]" />
-                      </div>
+                      <BrandGlyph label={item.mark || String(index + 1).padStart(2, '0')} tone="light" className="mb-5" />
                       <h3 className="m-0 mb-2 text-[1rem] font-bold text-[var(--color-ink)]">{item.title}</h3>
                       <p className="m-0 text-[0.88rem] text-[var(--color-muted)] leading-[1.7]">{item.text}</p>
                     </article>

@@ -1,7 +1,7 @@
 import { useData } from '../context/DataContext'
 import { Link } from 'react-router-dom'
 import ScrollReveal from './ScrollReveal'
-import { ArrowRight, FlaskConical, Heart, Shield } from 'lucide-react'
+import BrandGlyph from './BrandGlyph'
 
 export default function Story() {
   const { content } = useData()
@@ -18,7 +18,7 @@ export default function Story() {
     ctaBtn: 'Partner with GCL',
   }
 
-  const iconMap = { shield: Shield, flask: FlaskConical, heart: Heart }
+  const iconLabels = { shield: 'A', flask: 'Q', heart: 'C' }
 
   return (
     <section id="story" className="py-[82px] max-xl:py-[58px] max-sm:py-[50px] surface-band">
@@ -42,12 +42,9 @@ export default function Story() {
               <div className="bg-white border border-[var(--color-line)] premium-card p-4 max-xl:p-3">
                 <div className="grid gap-3">
                   {story.items.map((item, i) => {
-                    const Icon = iconMap[item.icon] || Shield
                     return (
                       <div key={i} className="grid grid-cols-[46px_1fr] gap-4 rounded-[8px] border border-[rgba(44,53,132,0.08)] bg-[linear-gradient(135deg,#ffffff,#f7f9ff)] p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(31,43,91,0.08)] max-xl:grid-cols-[40px_1fr] max-xl:gap-3 max-xl:p-3">
-                        <div className="w-11 h-11 rounded-[8px] bg-[var(--color-rose)] grid place-items-center max-xl:w-10 max-xl:h-10">
-                          <Icon size={20} className="text-[var(--color-primary)] max-xl:w-[18px]" />
-                        </div>
+                        <BrandGlyph label={iconLabels[item.icon] || String(i + 1).padStart(2, '0')} tone="light" />
                         <div>
                           <h3 className="m-0 mb-1 text-[1.02rem] font-semibold leading-[1.28] text-[var(--color-ink)] max-xl:text-[0.94rem]">
                             {item.title}
@@ -74,7 +71,7 @@ export default function Story() {
                   <span className="text-[0.66rem] uppercase tracking-[0.15em] text-[var(--color-primary)]">Since trust matters</span>
                   <span className="inline-flex items-center gap-2 text-[0.86rem] font-bold text-[var(--color-ink)]">
                     Read the story
-                    <ArrowRight size={15} />
+                    <BrandGlyph label="arrow" tone="inline" />
                   </span>
                 </Link>
               </div>

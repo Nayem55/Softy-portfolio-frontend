@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useData } from '../context/DataContext'
 import { motion, AnimatePresence } from 'framer-motion'
-import { BookOpenText, ChevronRight, Home, Menu, MessageCircle, ShoppingBag, X } from 'lucide-react'
+import BrandGlyph from './BrandGlyph'
 
 export default function Navbar() {
   const { content } = useData()
@@ -52,10 +52,10 @@ export default function Navbar() {
   ].map((required) => navbar.links?.find((link) => resolveNavHref(link) === required.href) || required)
 
   const dockLinks = [
-    { text: 'Home', href: '/', icon: Home },
-    { text: 'Shop', href: '/collection', icon: ShoppingBag },
-    { text: 'Story', href: '/story', icon: BookOpenText },
-    { text: 'Contact', href: '/contact', icon: MessageCircle },
+    { text: 'Home', href: '/', mark: 'HO' },
+    { text: 'Shop', href: '/collection', mark: 'SH' },
+    { text: 'Story', href: '/story', mark: 'ST' },
+    { text: 'Contact', href: '/contact', mark: 'CO' },
   ]
 
   return (
@@ -106,7 +106,7 @@ export default function Navbar() {
               className="inline-flex items-center gap-1.5 rounded-[12px] px-5 py-3 gcl-button text-white text-[0.84rem] font-bold transition-all duration-300 hover:-translate-y-0.5"
             >
               {navbar.ctaBtn}
-              <ChevronRight size={14} />
+              <BrandGlyph label="arrow" tone="button" />
             </Link>
           </div>
 
@@ -115,7 +115,7 @@ export default function Navbar() {
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Menu"
           >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            <span className={`menu-mark ${mobileOpen ? 'open' : ''}`} aria-hidden="true" />
           </button>
         </div>
       </header>
@@ -154,7 +154,7 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
               >
                 {navbar.ctaBtn}
-                <ChevronRight size={16} />
+                <BrandGlyph label="arrow" tone="button" />
               </Link>
             </nav>
           </motion.div>
@@ -164,11 +164,10 @@ export default function Navbar() {
       {!isAdmin && (
         <nav className="mobile-dock md:hidden" aria-label="Quick navigation">
           {dockLinks.map((item) => {
-            const Icon = item.icon
             const isActive = location.pathname === item.href || (item.href !== '/' && location.pathname.startsWith(item.href))
             return (
               <Link key={item.href} to={item.href} className={isActive ? 'active' : ''}>
-                <Icon size={18} strokeWidth={2.2} />
+                <BrandGlyph label={item.mark} tone={isActive ? 'dockActive' : 'dock'} />
                 <span>{item.text}</span>
               </Link>
             )

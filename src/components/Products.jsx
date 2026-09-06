@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useData } from '../context/DataContext'
 import ScrollReveal from './ScrollReveal'
 import { Link } from 'react-router-dom'
-import { ArrowRight, BadgeCheck, FlaskConical } from 'lucide-react'
+import BrandGlyph from './BrandGlyph'
 
 export default function Products({ limit, showHeader = true, showLink = false }) {
   const { products } = useData()
@@ -69,11 +69,11 @@ export default function Products({ limit, showHeader = true, showLink = false })
                   </p>
                   <div className="mt-5 grid grid-cols-2 gap-3 max-sm:grid-cols-1">
                     <div className="product-proof-pill">
-                      <BadgeCheck size={16} />
+                      <BrandGlyph label="A" tone="inline" />
                       <span>Authentic products only</span>
                     </div>
                     <div className="product-proof-pill">
-                      <FlaskConical size={16} />
+                      <BrandGlyph label="R" tone="inline" />
                       <span>Clear routine benefits</span>
                     </div>
                   </div>
@@ -144,7 +144,7 @@ export default function Products({ limit, showHeader = true, showLink = false })
                     <div className="mt-auto flex items-center justify-between gap-3 border-t border-[rgba(44,53,132,0.08)] pt-5 max-xl:pt-4">
                       <span className="inline-flex items-center gap-1.5 text-[0.78rem] font-extrabold text-[var(--color-primary)] max-xl:text-[0.74rem]">
                         View product
-                        <ArrowRight size={13} />
+                        <BrandGlyph label="arrow" tone="inline" />
                       </span>
                       <span className="rounded-full bg-[#f4f6ff] px-3 py-1.5 text-[0.68rem] font-semibold text-[var(--color-primary)] max-xl:px-2.5">
                         Details
@@ -164,7 +164,7 @@ export default function Products({ limit, showHeader = true, showLink = false })
               className="inline-flex items-center gap-2 rounded-[8px] px-8 py-3.5 gcl-button text-white font-bold text-[0.88rem] transition-all duration-300 hover:-translate-y-0.5"
             >
               View Full Collection
-              <ArrowRight size={16} />
+              <BrandGlyph label="arrow" tone="button" />
             </Link>
           </ScrollReveal>
         )}

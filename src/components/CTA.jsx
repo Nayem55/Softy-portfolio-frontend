@@ -1,6 +1,6 @@
 import { useData } from '../context/DataContext'
 import ScrollReveal from './ScrollReveal'
-import { Mail, ArrowUpRight } from 'lucide-react'
+import BrandGlyph from './BrandGlyph'
 
 export default function CTA() {
   const { content } = useData()
@@ -39,9 +39,9 @@ export default function CTA() {
               href={`mailto:${cta.email}`}
               className="relative z-[1] inline-flex items-center justify-center gap-2.5 rounded-[8px] px-7 py-4 bg-white font-semibold text-[0.88rem] transition-all duration-300 hover:bg-[var(--color-rose)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] hover:-translate-y-0.5 whitespace-nowrap text-[var(--color-ink)] max-sm:whitespace-normal max-sm:text-center"
             >
-              <Mail size={16} />
+              <BrandGlyph label="EM" tone="inline" />
               {cta.email}
-              <ArrowUpRight size={14} />
+              <BrandGlyph label="arrow" tone="inline" />
             </a>
           </div>
         </ScrollReveal>

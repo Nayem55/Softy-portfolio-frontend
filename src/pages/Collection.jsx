@@ -6,8 +6,8 @@ import CTA from '../components/CTA'
 import Footer from '../components/Footer'
 import Grain from '../components/Grain'
 import ScrollReveal from '../components/ScrollReveal'
+import BrandGlyph from '../components/BrandGlyph'
 import { useData } from '../context/DataContext'
-import { ArrowRight, BadgeCheck, FlaskConical, ShieldCheck, Truck } from 'lucide-react'
 
 export default function Collection() {
   const { content, categories, brands, products } = useData()
@@ -78,12 +78,9 @@ export default function Collection() {
             <ScrollReveal>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 {trustItems.map((item, index) => {
-                  const Icon = [ShieldCheck, FlaskConical, BadgeCheck, Truck][index] || BadgeCheck
                   return (
                   <div key={item.title} className="flex items-center gap-4 rounded-[8px] bg-white border border-[var(--color-line)] p-5">
-                    <div className="w-11 h-11 rounded-[8px] bg-[var(--color-rose)] grid place-items-center shrink-0">
-                      <Icon size={20} className="text-[var(--color-primary)]" />
-                    </div>
+                    <BrandGlyph label={['A', 'Q', 'S', 'BD'][index] || String(index + 1)} tone="light" className="shrink-0" />
                     <div>
                       <strong className="block text-[0.9rem] text-[var(--color-ink)]">{item.title}</strong>
                       <span className="block text-[0.78rem] text-[var(--color-muted)] mt-0.5">{item.text}</span>
@@ -107,7 +104,7 @@ export default function Collection() {
                 </ScrollReveal>
                 <Link to="/categories" className="inline-flex items-center gap-2 text-[0.82rem] font-bold uppercase tracking-wider text-[var(--color-primary)]">
                   View Categories
-                  <ArrowRight size={15} />
+                  <BrandGlyph label="arrow" tone="inline" />
                 </Link>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">

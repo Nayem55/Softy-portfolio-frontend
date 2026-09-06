@@ -3,8 +3,8 @@ import CTA from '../components/CTA'
 import Footer from '../components/Footer'
 import Grain from '../components/Grain'
 import ScrollReveal from '../components/ScrollReveal'
+import BrandGlyph from '../components/BrandGlyph'
 import { useData } from '../context/DataContext'
-import { ArrowUpRight, Clock, ExternalLink, Mail, MapPin, MessageCircle, PackageCheck, Phone, ShieldCheck, Truck } from 'lucide-react'
 
 const contactEmail = 'globalcosmeticslines@gmail.com'
 const phone = '01911-238421'
@@ -23,17 +23,17 @@ const inquiryTypes = [
 
 const supportCards = [
   {
-    icon: Truck,
+    mark: 'D',
     title: 'Delivery',
     text: 'Inside Dhaka orders usually arrive within 24 to 48 hours. Outside Dhaka orders usually arrive within 2 to 4 business days.',
   },
   {
-    icon: PackageCheck,
+    mark: 'E',
     title: 'Exchange',
     text: 'Defective, damaged, or incorrect items can be reviewed when reported quickly with proof and intact packaging.',
   },
   {
-    icon: ShieldCheck,
+    mark: 'P',
     title: 'Privacy',
     text: 'Customer details are used for order processing and service improvement, not sold for third-party marketing.',
   },
@@ -92,11 +92,11 @@ export default function Contact() {
                 </p>
                 <div className="flex gap-3 flex-wrap mt-8">
                   <a href={contactWhatsappUrl} className="inline-flex items-center gap-2 rounded-[8px] px-7 py-3.5 gcl-button text-white font-bold text-[0.88rem] transition-all duration-300 hover:-translate-y-0.5">
-                    <MessageCircle size={16} />
+                    <BrandGlyph label="WA" tone="button" />
                     WhatsApp
                   </a>
                   <a href={`mailto:${email}`} className="inline-flex items-center gap-2 rounded-[8px] px-7 py-3.5 bg-white border border-[var(--color-line)] text-[var(--color-ink)] font-semibold text-[0.88rem] transition-all duration-300 hover:bg-[var(--color-rose)]">
-                    <Mail size={16} />
+                    <BrandGlyph label="EM" tone="inline" />
                     Email Team
                   </a>
                 </div>
@@ -107,20 +107,18 @@ export default function Contact() {
                   <h2 className="m-0 mb-6 text-[2rem]" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400 }}>Direct Lines</h2>
                   <div className="space-y-5">
                     {[
-                      { icon: Mail, label: 'Email', value: email, href: `mailto:${email}` },
-                      { icon: Phone, label: 'Phone', value: contactPhone, href: `tel:${contactPhone}` },
-                      { icon: MessageCircle, label: 'WhatsApp', value: contactPhone, href: contactWhatsappUrl },
-                      { icon: ExternalLink, label: 'Facebook', value: contactFacebookUrl.replace(/^https?:\/\//, ''), href: contactFacebookUrl },
+                      { mark: 'EM', label: 'Email', value: email, href: `mailto:${email}` },
+                      { mark: 'PH', label: 'Phone', value: contactPhone, href: `tel:${contactPhone}` },
+                      { mark: 'WA', label: 'WhatsApp', value: contactPhone, href: contactWhatsappUrl },
+                      { mark: 'FB', label: 'Facebook', value: contactFacebookUrl.replace(/^https?:\/\//, ''), href: contactFacebookUrl },
                     ].map((item) => (
                       <a key={item.label} href={item.href} className="group flex items-center gap-4 rounded-[8px] border border-[var(--color-line)] p-4 transition-all duration-300 hover:bg-[var(--color-rose)]">
-                        <div className="w-11 h-11 rounded-[8px] bg-[var(--color-rose)] grid place-items-center shrink-0 group-hover:bg-white">
-                          <item.icon size={18} className="text-[var(--color-primary)]" />
-                        </div>
+                        <BrandGlyph label={item.mark} tone="light" className="shrink-0 group-hover:bg-white" />
                         <div className="min-w-0">
                           <span className="block text-[0.72rem] font-bold uppercase tracking-[0.14em] text-[var(--color-muted)]">{item.label}</span>
                           <strong className="block text-[0.92rem] text-[var(--color-ink)] break-words mt-1">{item.value}</strong>
                         </div>
-                        <ArrowUpRight size={16} className="ml-auto text-[var(--color-primary)] opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                        <BrandGlyph label="arrow" tone="inline" className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                       </a>
                     ))}
                   </div>
@@ -165,7 +163,7 @@ export default function Contact() {
                     </div>
                     <button type="submit" className="w-full inline-flex items-center justify-center gap-2 py-4 rounded-[8px] bg-[var(--color-ink)] font-bold text-[0.9rem] transition-all duration-250 hover:-translate-y-0.5 hover:bg-[var(--color-primary)]" style={{ color: '#ffffff' }}>
                       Prepare Email
-                      <ArrowUpRight size={15} />
+                      <BrandGlyph label="send" tone="button" />
                     </button>
                   </form>
                 </div>
@@ -174,7 +172,7 @@ export default function Contact() {
               <ScrollReveal delay={0.1}>
                 <div className="space-y-5">
                   <div className="bg-[var(--color-paper)] rounded-[8px] p-8 border border-[var(--color-line)] premium-card">
-                    <MapPin size={24} className="text-[var(--color-primary)] mb-5" />
+                    <BrandGlyph label="BD" tone="light" className="mb-5" />
                     <h3 className="mb-3" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400, fontSize: '1.7rem', color: 'var(--color-ink)' }}>
                       {page.officeTitle || 'Office'}
                     </h3>
@@ -182,7 +180,7 @@ export default function Contact() {
                   </div>
 
                   <div className="bg-[var(--color-paper)] rounded-[8px] p-8 border border-[var(--color-line)] premium-card">
-                    <Clock size={24} className="text-[var(--color-primary)] mb-5" />
+                    <BrandGlyph label="HR" tone="light" className="mb-5" />
                     <h3 className="mb-3" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400, fontSize: '1.7rem', color: 'var(--color-ink)' }}>
                       {page.hoursTitle || 'Business Hours'}
                     </h3>
@@ -195,10 +193,9 @@ export default function Contact() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
                     {pageSupportCards.map((item, index) => {
-                      const Icon = [Truck, PackageCheck, ShieldCheck][index] || ShieldCheck
                       return (
                         <article key={item.title} className="rounded-[8px] bg-white border border-[var(--color-line)] p-5">
-                          <Icon size={20} className="text-[var(--color-primary)] mb-3" />
+                          <BrandGlyph label={item.mark || ['D', 'E', 'P'][index] || String(index + 1)} tone="mini" className="mb-3" />
                           <strong className="block text-[0.9rem] text-[var(--color-ink)]">{item.title}</strong>
                           <p className="m-0 mt-2 text-[0.8rem] text-[var(--color-muted)] leading-[1.6]">{item.text}</p>
                         </article>

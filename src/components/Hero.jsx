@@ -1,7 +1,7 @@
 import { useData } from '../context/DataContext'
 import { Link } from 'react-router-dom'
 import ScrollReveal from './ScrollReveal'
-import { ArrowRight, Check, CircleDot, ShieldCheck } from 'lucide-react'
+import BrandGlyph from './BrandGlyph'
 
 export default function Hero() {
   const { content } = useData()
@@ -62,7 +62,7 @@ export default function Hero() {
                   className="inline-flex items-center justify-center gap-2 rounded-[12px] px-5 py-3.5 gcl-button text-white font-bold text-[0.88rem] transition-all duration-300 hover:-translate-y-0.5 max-sm:px-4"
                 >
                   {hero.primaryBtn}
-                  <ArrowRight size={16} />
+                  <BrandGlyph label="arrow" tone="button" />
                 </Link>
                 <Link
                   to="/story"
@@ -74,12 +74,9 @@ export default function Hero() {
 
               <div className="flex flex-wrap items-center gap-7 mt-8 max-lg:justify-center max-sm:justify-start max-sm:mt-7 max-sm:gap-4">
                 {stats.map((item, i) => {
-                  const Icon = [Check, CircleDot, ArrowRight][i] || ShieldCheck
                   return (
                   <div key={i} className="flex items-center gap-3 text-left">
-                    <span className="w-7 h-7 rounded-[8px] bg-[var(--color-rose)] grid place-items-center shrink-0">
-                      <Icon size={13} className="text-[var(--color-primary)]" />
-                    </span>
+                    <BrandGlyph label={['A', 'Q', '03'][i] || 'A'} tone="soft" className="shrink-0" />
                     <div className="text-[0.72rem] leading-[1.35] text-[var(--color-muted)]">
                       <strong className="block font-medium text-[var(--color-muted)]">{item.label}</strong>
                       {item.sublabel && <span>{item.sublabel}</span>}
