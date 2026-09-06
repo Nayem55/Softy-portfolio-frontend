@@ -1,49 +1,49 @@
 import { useData } from '../context/DataContext'
 import { Link } from 'react-router-dom'
 import ScrollReveal from './ScrollReveal'
-import { ArrowRight, FlaskConical, ShieldCheck, Truck } from 'lucide-react'
+import { ArrowRight, Check, CircleDot, ShieldCheck } from 'lucide-react'
 
 export default function Hero() {
   const { content } = useData()
 
   const hero = content?.hero || {
-    eyebrow: 'Skin care, made close to home',
+    eyebrow: 'Global Cosmetics Lines - care made close to home',
     title: 'Care that feels',
     titleItalic: 'quietly certain.',
-    description: 'SoftyyBD brings authentic skincare and freshness essentials to Bangladesh with practical formulas, careful sourcing, and support people can actually reach.',
+    description: 'A cleaner, warmer storefront for everyday skincare - easy to scan, easy to trust, and designed around the way real customers browse.',
     primaryBtn: 'Explore the Collection',
     secondaryBtn: 'Our Story',
     image: '/editorial/softyy-hero-editorial.png',
     floatingCard: {
-      small: 'Current Focus',
+      small: 'Customer Focus',
       title: 'Oil Control',
-      desc: 'Daily cleansers and serum care for humid-weather routines.',
+      desc: 'Simple guidance, clear product intent.',
       image: '/products/softyy/acne-serum.jpg',
     },
     stats: [
-      { label: '100% Authentic', sublabel: 'Zero counterfeit policy' },
-      { label: 'In-house Lab', sublabel: 'R&D guided quality' },
-      { label: 'BD-wide', sublabel: 'Reliable delivery' },
+      { label: 'Everyday-first formulas', sublabel: '' },
+      { label: 'Careful product curation', sublabel: '' },
+      { label: 'Support you can reach', sublabel: '' },
     ],
   }
   const stats = hero.stats?.length ? hero.stats : [
-    { label: '100% Authentic', sublabel: 'Zero counterfeit policy' },
-    { label: 'In-house Lab', sublabel: 'R&D guided quality' },
-    { label: 'BD-wide', sublabel: 'Reliable delivery' },
+    { label: 'Everyday-first formulas', sublabel: '' },
+    { label: 'Careful product curation', sublabel: '' },
+    { label: 'Support you can reach', sublabel: '' },
   ]
   const floatingCard = hero.floatingCard || {}
 
   return (
-    <section className="min-h-screen pt-[108px] pb-[72px] relative overflow-hidden hero-atmosphere">
-      <div className="w-[min(1220px,calc(100%-48px))] mx-auto relative max-sm:w-[min(100%-24px,1220px)]">
-        <div className="grid grid-cols-[0.82fr_1.18fr] gap-[64px] items-center max-lg:grid-cols-1 max-lg:gap-[46px]">
+    <section className="min-h-[90vh] pt-[104px] pb-[56px] relative overflow-hidden hero-atmosphere bg-white max-xl:min-h-[620px] max-xl:pt-[94px] max-xl:pb-[38px] max-lg:min-h-0 max-lg:pt-[82px] max-lg:pb-[58px] max-sm:pt-[86px] max-sm:pb-[42px]">
+      <div className="brand-shell relative">
+        <div className="grid grid-cols-[0.98fr_1.02fr] gap-[56px] items-center min-h-[calc(90vh-160px)] max-xl:min-h-[470px] max-xl:items-start max-xl:gap-[40px] max-lg:grid-cols-1 max-lg:min-h-0 max-lg:gap-[34px]">
           <ScrollReveal>
-            <div className="max-lg:text-center">
-              <span className="section-kicker mb-6">{hero.eyebrow}</span>
+            <div className="max-lg:text-center max-sm:text-left">
+              <span className="section-kicker mb-7 max-sm:mb-5">{hero.eyebrow}</span>
 
               <h1
-                className="display-title mt-0 mb-0 leading-[0.92]"
-                style={{ fontSize: 'clamp(3.15rem, 7vw, 6.7rem)' }}
+                className="display-title mt-0 mb-0 leading-[0.9] max-sm:leading-[0.92]"
+                style={{ fontSize: 'clamp(3.25rem, 6.7vw, 6.25rem)' }}
               >
                 {hero.title}
                 <br />
@@ -52,35 +52,37 @@ export default function Hero() {
                 </em>
               </h1>
 
-              <p className="max-w-[560px] text-[1.02rem] my-[30px] leading-[1.8] text-[var(--color-muted)] max-lg:mx-auto">
+              <p className="max-w-[585px] text-[1.08rem] my-[22px] leading-[1.45] text-[var(--color-muted)] max-lg:mx-auto max-sm:mx-0 max-sm:my-[20px] max-sm:text-[0.95rem] max-sm:leading-[1.7]">
                 {hero.description}
               </p>
 
-              <div className="flex gap-3 flex-wrap max-lg:justify-center">
+              <div className="flex gap-3 flex-wrap max-lg:justify-center max-sm:grid max-sm:grid-cols-2 max-sm:justify-stretch">
                 <Link
                   to="/collection"
-                  className="inline-flex items-center gap-2 rounded-[8px] px-7 py-3.5 bg-[var(--color-ink)] text-white font-semibold text-[0.88rem] transition-all duration-300 hover:bg-[var(--color-primary)] hover:shadow-[0_14px_32px_rgba(22,24,33,0.18)] hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center gap-2 rounded-[12px] px-5 py-3.5 gcl-button text-white font-bold text-[0.88rem] transition-all duration-300 hover:-translate-y-0.5 max-sm:px-4"
                 >
                   {hero.primaryBtn}
                   <ArrowRight size={16} />
                 </Link>
                 <Link
                   to="/story"
-                  className="inline-flex items-center gap-2 rounded-[8px] px-7 py-3.5 border border-[var(--color-line)] bg-white/45 text-[var(--color-ink)] font-semibold text-[0.88rem] transition-all duration-300 hover:bg-white"
+                  className="inline-flex items-center justify-center gap-2 rounded-[12px] px-5 py-3.5 border border-[var(--color-line)] bg-white text-[var(--color-ink)] font-bold text-[0.88rem] transition-all duration-300 hover:bg-[var(--color-rose)] max-sm:px-4"
                 >
                   {hero.secondaryBtn}
                 </Link>
               </div>
 
-              <div className="grid grid-cols-3 gap-0 mt-12 max-lg:mx-auto max-lg:max-w-[620px] max-sm:grid-cols-1 max-sm:gap-4">
+              <div className="flex flex-wrap items-center gap-7 mt-8 max-lg:justify-center max-sm:justify-start max-sm:mt-7 max-sm:gap-4">
                 {stats.map((item, i) => {
-                  const Icon = [ShieldCheck, FlaskConical, Truck][i] || ShieldCheck
+                  const Icon = [Check, CircleDot, ArrowRight][i] || ShieldCheck
                   return (
-                  <div key={i} className="border-l border-[var(--color-line)] first:border-l-0 pl-5 first:pl-0 max-sm:border-l-0 max-sm:border-t max-sm:first:border-t-0 max-sm:pt-4 max-sm:first:pt-0 max-sm:pl-0 max-sm:flex max-sm:items-center max-sm:gap-4 max-sm:text-left">
-                    <Icon size={19} className="mb-3 text-[var(--color-accent)] max-lg:mx-auto max-sm:mx-0 max-sm:mb-0 max-sm:shrink-0" />
-                    <div>
-                      <strong className="block text-[0.82rem] text-[var(--color-ink)]">{item.label}</strong>
-                      <span className="text-[0.72rem] text-[var(--color-muted)]">{item.sublabel}</span>
+                  <div key={i} className="flex items-center gap-3 text-left">
+                    <span className="w-7 h-7 rounded-[8px] bg-[var(--color-rose)] grid place-items-center shrink-0">
+                      <Icon size={13} className="text-[var(--color-primary)]" />
+                    </span>
+                    <div className="text-[0.72rem] leading-[1.35] text-[var(--color-muted)]">
+                      <strong className="block font-medium text-[var(--color-muted)]">{item.label}</strong>
+                      {item.sublabel && <span>{item.sublabel}</span>}
                     </div>
                   </div>
                 )})}
@@ -89,26 +91,30 @@ export default function Hero() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
-            <div className="relative min-h-[520px] max-lg:min-h-0">
-              <div className="relative z-[2] overflow-hidden border border-[var(--color-line)] bg-[var(--color-paper)] p-2 grid place-items-center aspect-[1.62/1] premium-card hero-image-panel max-sm:p-1.5">
+            <div className="hero-art-reference max-sm:mt-1">
+              <div className="hero-image-panel overflow-hidden border border-white/70 bg-[var(--color-paper)] p-1.5 grid place-items-center">
                 <img
                   src={hero.image || '/editorial/softyy-hero-editorial.png'}
-                  alt="Softyy skincare collection"
+                  alt="Global Cosmetics Lines skincare collection"
                   className="w-full h-full object-cover"
                 />
               </div>
 
-              <div className="absolute right-0 -bottom-12 z-[3] grid grid-cols-[170px_190px] gap-4 max-xl:-bottom-8 max-lg:relative max-lg:bottom-auto max-lg:right-auto max-lg:mt-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
-                <div className="overflow-hidden border border-[var(--color-line)] bg-[var(--color-paper)] p-4 premium-card grid place-items-center min-h-[178px] max-sm:min-h-[210px]">
-                  <img src={floatingCard.image || '/products/softyy/acne-serum.jpg'} alt={floatingCard.title || 'Softyy featured product'} className="softyy-media-contain max-h-[180px] max-sm:max-h-[220px]" />
+              <div className="hero-ghost-card" />
+
+              <div className="hero-mini-card overflow-hidden border border-[var(--color-line)] bg-white p-3 premium-card">
+                <div className="h-[116px] overflow-hidden rounded-[8px] media-frame">
+                  <img src={floatingCard.image || '/products/softyy/acne-serum.jpg'} alt={floatingCard.title || 'Global Cosmetics Lines featured product'} className="w-full h-full object-cover" />
                 </div>
-                <div className="bg-[var(--color-ink)] text-white p-5 premium-card flex flex-col justify-between min-h-[178px] max-sm:min-h-[190px]">
-                  <span className="text-[0.72rem] uppercase tracking-[0.16em] text-white/52">{floatingCard.small || 'Current focus'}</span>
+                <span className="block mt-3 text-[0.82rem] leading-tight text-[var(--color-muted)]">Routine pick · daily care</span>
+              </div>
+
+              <div className="hero-note-card bg-[var(--color-primary)] text-white p-6 premium-card flex flex-col justify-between min-h-[204px] max-sm:min-h-[170px] max-sm:p-4">
+                  <span className="text-[0.62rem] uppercase tracking-[0.16em] text-white/62">{floatingCard.small || 'Customer Focus'}</span>
                   <div>
-                    <strong className="display-title block text-[2.15rem] font-medium leading-none">{floatingCard.title || 'Oil Control'}</strong>
-                    <span className="block mt-2 text-[0.82rem] leading-[1.6] text-white/64">{floatingCard.desc || 'Daily cleansers and targeted serum care for humid-weather routines.'}</span>
+                    <strong className="display-title block text-[1.9rem] font-bold leading-[0.95] max-sm:text-[1.55rem]">{floatingCard.title || 'Oil Control'}</strong>
+                    <span className="block mt-4 text-[0.72rem] leading-[1.55] text-white/76">{floatingCard.desc || 'Simple guidance, clear product intent.'}</span>
                   </div>
-                </div>
               </div>
             </div>
           </ScrollReveal>

@@ -75,14 +75,14 @@ export default function Contact() {
     <>
       <Grain />
       <Navbar />
-      <main id="top" className="pt-[100px]">
-        <section className="py-[64px] max-sm:py-[42px]">
-          <div className="w-[min(1180px,calc(100%-40px))] mx-auto max-sm:w-[min(100%-24px,1180px)]">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.92fr] gap-14 items-center">
+      <main id="top" className="pt-[88px]">
+        <section className="py-[48px] max-sm:py-[34px]">
+          <div className="brand-shell">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.92fr] gap-10 items-center">
               <ScrollReveal>
                 <span className="uppercase tracking-[0.18em] text-[0.74rem] font-bold text-[var(--color-wine)] inline-flex items-center gap-2.5 mb-5">
                   <span className="w-7 h-px bg-[var(--color-wine)]" />
-                  {page.eyebrow || 'Contact SoftyyBD'}
+                  {page.eyebrow || 'Contact Global Cosmetics Lines'}
                 </span>
                 <h1 className="mb-0" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400, fontSize: 'clamp(3rem, 7vw, 6rem)', lineHeight: 0.95 }}>
                   {page.title || 'Let us make care easier to reach.'}
@@ -91,7 +91,7 @@ export default function Contact() {
                   {page.description || 'Reach Global Cosmetics Line\'s for distribution, retail partnerships, customer support, collaborations, press requests, and brand inquiries.'}
                 </p>
                 <div className="flex gap-3 flex-wrap mt-8">
-                  <a href={contactWhatsappUrl} className="inline-flex items-center gap-2 rounded-[8px] px-7 py-3.5 bg-[var(--color-primary)] text-white font-semibold text-[0.88rem] transition-all duration-300 hover:bg-[#14307a] hover:-translate-y-0.5">
+                  <a href={contactWhatsappUrl} className="inline-flex items-center gap-2 rounded-[8px] px-7 py-3.5 gcl-button text-white font-bold text-[0.88rem] transition-all duration-300 hover:-translate-y-0.5">
                     <MessageCircle size={16} />
                     WhatsApp
                   </a>
@@ -130,8 +130,8 @@ export default function Contact() {
           </div>
         </section>
 
-        <section className="pb-[110px] max-sm:pb-[76px]">
-          <div className="w-[min(1180px,calc(100%-40px))] mx-auto max-sm:w-[min(100%-24px,1180px)]">
+        <section className="pb-[88px] max-sm:pb-[64px]">
+          <div className="brand-shell">
             <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-10 items-start">
               <ScrollReveal>
                 <div className="bg-[var(--color-paper)] rounded-[8px] p-8 sm:p-10 border border-[var(--color-line)] premium-card">

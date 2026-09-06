@@ -3,8 +3,9 @@ import { useData } from '../context/DataContext'
 export default function Marquee() {
   const { content } = useData()
   const items = content?.marquee?.items || [
+    'Global Cosmetics Lines',
     'Feel The Pure Softness',
-    'SoftyyBD',
+    'Softyy',
     'Fresh Daily Confidence',
     'Authentic Skincare',
     'Quality You Can Trust',

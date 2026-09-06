@@ -8,18 +8,18 @@ export default function CTA() {
   const cta = content?.cta || {
     eyebrow: 'Business & partnerships',
     title: "Let's build a more trusted beauty routine.",
-    description: 'For distribution, retail, collaborations, press, and business partnerships, connect with the SoftyyBD team.',
+    description: 'For distribution, retail, collaborations, press, and business partnerships, connect with the Global Cosmetics Lines team.',
     email: 'globalcosmeticslines@gmail.com',
     image: '/editorial/softyy-boutique-care.png',
   }
 
   return (
-    <section id="contact" className="py-[82px] max-sm:py-[70px]">
-      <div className="w-[min(1200px,calc(100%-48px))] mx-auto max-sm:w-[min(100%-24px,1200px)]">
+    <section id="contact" className="py-[70px] max-sm:py-[58px]">
+      <div className="brand-shell">
         <ScrollReveal>
-          <div className="relative overflow-hidden bg-[var(--color-ink)] p-10 sm:p-12 grid grid-cols-[1fr_auto] items-center gap-10 max-md:grid-cols-1 border border-white/10 premium-cta">
+          <div className="relative overflow-hidden bg-[var(--color-primary)] p-8 sm:p-10 grid grid-cols-[1fr_auto] items-center gap-8 max-md:grid-cols-1 border border-white/10 premium-cta">
             <img src={cta.image || '/editorial/softyy-boutique-care.png'} alt="" className="absolute inset-0 w-full h-full object-cover opacity-35" />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(22,24,33,0.94),rgba(22,24,33,0.72),rgba(22,24,33,0.42))]" />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(24,32,92,0.95),rgba(24,32,92,0.76),rgba(24,32,92,0.42))]" />
             <div className="relative z-[1]">
               <span className="inline-flex items-center gap-2 mb-4" style={{ color: 'rgba(255,255,255,0.62)' }}>
                 <span className="w-6 h-[2px] bg-white/40" />

@@ -11,9 +11,9 @@ export default function BrandsSection() {
   const getProductCount = (brandId) => products.filter(p => p.brandId === brandId).length
 
   return (
-    <section className="py-[104px] max-sm:py-[72px]">
-      <div className="w-[min(1200px,calc(100%-48px))] mx-auto max-sm:w-[min(100%-24px,1200px)]">
-        <ScrollReveal className="mb-[52px] max-w-[720px]">
+    <section className="py-[82px] max-sm:py-[58px] surface-band">
+      <div className="brand-shell">
+        <ScrollReveal className="mb-[34px] max-w-[720px]">
           <span className="section-kicker mb-4">Our Brands</span>
           <h2 className="display-title mt-3 mb-0" style={{ fontSize: 'clamp(2.35rem, 4.6vw, 4.1rem)', lineHeight: 1.05 }}>
             Two lines, one standard of care.
@@ -23,24 +23,27 @@ export default function BrandsSection() {
           </p>
         </ScrollReveal>
 
-        <div className="grid grid-cols-2 gap-px bg-[var(--color-line)] border border-[var(--color-line)] max-md:grid-cols-1">
+        <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
           {brands.map((brand, i) => (
             <ScrollReveal key={brand._id} delay={i * 0.15}>
               <Link
                 to={`/brands/${brand.slug}`}
-                className="group grid grid-cols-[0.9fr_1.1fr] max-sm:grid-cols-1 bg-[var(--color-paper)] overflow-hidden transition-all duration-500 hover:bg-white h-full"
+                className="image-card-smooth group relative block h-full overflow-hidden p-7 transition-all duration-500 hover:-translate-y-1"
               >
-                <div className="w-full media-frame grid place-items-center min-h-[260px] p-8">
-                  <img
-                    src={brand.logo}
-                    alt={brand.name}
-                    className="softyy-media-contain transition-transform duration-700 group-hover:scale-[1.02]"
-                  />
-                </div>
-
-                <div className="p-8 flex flex-col justify-between">
+                <div className="absolute -right-8 -bottom-12 w-[220px] h-[220px] rounded-full bg-[rgba(44,53,132,0.06)] transition-transform duration-700 group-hover:scale-110" />
+                <div className="relative z-[1] flex flex-col min-h-[210px]">
                   <div>
-                    <span className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-[var(--color-accent)]">0{i + 1}</span>
+                    <div className="flex items-center justify-between gap-5">
+                      <div className="brand-monogram">{brand.name?.charAt(0) || 'G'}</div>
+                      {brand.logo && (
+                        <img
+                          src={brand.logo}
+                          alt={brand.name}
+                          className="max-h-[44px] max-w-[150px] object-contain opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+                        />
+                      )}
+                    </div>
+                    <span className="block mt-7 text-[0.68rem] font-bold uppercase tracking-[0.14em] text-[var(--color-accent)]">0{i + 1}</span>
                     <h3 className="display-title m-0 mt-4 text-[1.8rem] font-normal text-[var(--color-ink)]">
                       {brand.name}
                     </h3>
@@ -48,7 +51,7 @@ export default function BrandsSection() {
                       {brand.description}
                     </p>
                   </div>
-                  <div className="flex items-center justify-between gap-4 mt-7">
+                  <div className="flex items-center justify-between gap-4 mt-auto pt-7">
                     <span className="py-1.5 text-[0.74rem] font-bold text-[var(--color-primary)]">
                       {getProductCount(brand._id)} Products
                     </span>

@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useData } from '../../context/DataContext'
+import { softyyContent, useData } from '../../context/DataContext'
 import { toast } from 'react-hot-toast'
 import { ArrowLeft, Save, Plus, Trash2 } from 'lucide-react'
 
 export default function ManageNavbar() {
   const { content, updateContent } = useData()
   const [saving, setSaving] = useState(false)
-  const [form, setForm] = useState({ brandName: '', brandInitial: '', ctaBtn: '', links: [{ text: '', href: '' }] })
+  const [form, setForm] = useState({ brandName: '', brandInitial: '', logo: '', ctaBtn: '', links: [{ text: '', href: '' }] })
 
-  useEffect(() => { if (content?.navbar) setForm(content.navbar) }, [content])
+  useEffect(() => {
+    if (content?.navbar) setForm({ ...softyyContent.navbar, ...content.navbar })
+  }, [content])
 
   const handleChange = (field, value) => setForm(prev => ({ ...prev, [field]: value }))
 
@@ -62,6 +64,11 @@ export default function ManageNavbar() {
               <input type="text" value={form.brandInitial} onChange={(e) => handleChange('brandInitial', e.target.value.slice(0, 1))}
                 className="w-full px-4 py-2.5 rounded-xl border border-[var(--color-line)] bg-white text-sm outline-none focus:border-[var(--color-wine)] transition-colors" />
             </div>
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-[var(--color-muted)] mb-1.5 uppercase tracking-wider">Logo URL</label>
+            <input type="text" value={form.logo || ''} onChange={(e) => handleChange('logo', e.target.value)}
+              className="w-full px-4 py-2.5 rounded-xl border border-[var(--color-line)] bg-white text-sm outline-none focus:border-[var(--color-wine)] transition-colors" />
           </div>
           <div>
             <label className="block text-xs font-bold text-[var(--color-muted)] mb-1.5 uppercase tracking-wider">CTA Button Text</label>

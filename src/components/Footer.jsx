@@ -5,23 +5,23 @@ export default function Footer() {
   const { content } = useData()
 
   const footer = content?.footer || {
-    description: 'Authentic skincare and cosmetics for healthy, refreshed skin. Feel The Pure Softness.',
+    description: 'The beauty house behind Softyy skincare and Fresh Daily essentials. Feel The Pure Softness.',
     columns: [
       { title: 'Discover', links: [{ text: 'Collection', href: '/collection' }, { text: 'Brand Story', href: '/story' }, { text: 'Philosophy', href: '/philosophy' }] },
       { title: 'Business', links: [{ text: 'Distribution', href: '/contact' }, { text: 'Retail', href: '/contact' }, { text: 'Support', href: '/contact' }] },
       { title: 'Social', links: [{ text: 'Facebook', href: 'https://www.facebook.com/softyybd' }, { text: 'WhatsApp', href: 'https://wa.me/8801911238421' }, { text: 'Email', href: 'mailto:globalcosmeticslines@gmail.com' }] },
     ],
-    copyright: '2026 Global Cosmetics Line\'s. All rights reserved.',
+    copyright: '2026 Global Cosmetics Lines. All rights reserved.',
     tagline: 'Feel The Pure Softness.',
   }
 
   return (
-    <footer className="bg-[var(--color-ink)] text-white pt-[60px] pb-[30px]">
-      <div className="w-[min(1200px,calc(100%-48px))] mx-auto max-sm:w-[min(100%-24px,1200px)]">
-        <div className="grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-[40px] max-md:grid-cols-2 max-sm:grid-cols-1">
+    <footer className="bg-[var(--color-primary)] text-white pt-[52px] pb-[28px]">
+      <div className="brand-shell">
+        <div className="grid grid-cols-[1.35fr_1fr_1fr_1fr] gap-[34px] max-md:grid-cols-2 max-sm:grid-cols-1">
           <div>
             <Link to="/" className="flex items-center gap-2.5">
-              <img src="/brand/softyy-logo-white.png" alt="Softyy" className="h-[38px] w-auto max-w-none" />
+              <img src="/brand/gcl-main-logo.png" alt="Global Cosmetics Lines" className="h-[48px] w-auto max-w-none bg-white rounded-[8px] px-3 py-1.5" />
             </Link>
             <p className="max-w-[300px] text-[0.86rem] text-white/55 leading-[1.7] mt-5">
               {footer.description}
@@ -46,7 +46,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="border-t border-white/10 mt-[40px] pt-[22px] flex justify-between text-white/35 text-[0.75rem] max-sm:flex-col max-sm:gap-2">
+        <div className="border-t border-white/10 mt-[34px] pt-[20px] flex justify-between text-white/45 text-[0.75rem] max-sm:flex-col max-sm:gap-2">
           <span>&copy; {footer.copyright}</span>
           <span>{footer.tagline}</span>
         </div>

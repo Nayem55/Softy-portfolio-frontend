@@ -2,22 +2,24 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useData } from '../context/DataContext'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, ChevronRight } from 'lucide-react'
+import { BookOpenText, ChevronRight, Home, Menu, MessageCircle, ShoppingBag, X } from 'lucide-react'
 
 export default function Navbar() {
   const { content } = useData()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const location = useLocation()
+  const isAdmin = location.pathname.startsWith('/admin')
 
   const navbar = content?.navbar || {
-    brandName: 'SOFTYY',
-    brandInitial: 'S',
+    brandName: 'Global Cosmetics Lines',
+    brandInitial: 'G',
+    logo: '/brand/gcl-main-logo.png',
     links: [
       { text: 'Collection', href: '/collection' },
-      { text: 'Our Story', href: '/story' },
+      { text: 'Our brands', href: '/brands' },
       { text: 'Philosophy', href: '/philosophy' },
-      { text: 'Contact', href: '/contact' },
+      { text: 'Our Story', href: '/story' },
     ],
     ctaBtn: 'Explore Beauty',
   }
@@ -35,35 +37,54 @@ export default function Navbar() {
   const resolveNavHref = (link) => {
     const text = link.text?.toLowerCase() || ''
     if (text.includes('collection')) return '/collection'
+    if (text.includes('brand')) return '/brands'
     if (text.includes('story')) return '/story'
     if (text.includes('philosophy') || text.includes('value')) return '/philosophy'
     if (text.includes('contact') || text.includes('support')) return '/contact'
     return link.href || '/'
   }
 
+  const centerLinks = [
+    { text: 'Collection', href: '/collection' },
+    { text: 'Our brands', href: '/brands' },
+    { text: 'Philosophy', href: '/philosophy' },
+    { text: 'Our story', href: '/story' },
+  ].map((required) => navbar.links?.find((link) => resolveNavHref(link) === required.href) || required)
+
+  const dockLinks = [
+    { text: 'Home', href: '/', icon: Home },
+    { text: 'Shop', href: '/collection', icon: ShoppingBag },
+    { text: 'Story', href: '/story', icon: BookOpenText },
+    { text: 'Contact', href: '/contact', icon: MessageCircle },
+  ]
+
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-500 ${
           scrolled
-            ? 'bg-[rgba(251,248,242,0.92)] backdrop-blur-[16px] border-b border-[var(--color-line)]'
-            : 'bg-transparent'
+            ? 'bg-white/95 backdrop-blur-[18px] border-b border-[var(--color-line)] shadow-[0_10px_30px_rgba(31,43,91,0.06)]'
+            : 'bg-white border-b border-[var(--color-line)]'
         }`}
       >
-        <div className="w-[min(1200px,calc(100%-48px))] mx-auto flex items-center justify-between h-[72px] max-md:h-[64px]">
-          <Link to="/" className="flex items-center gap-2.5 shrink-0">
-            <img src="/brand/softyy-logo.png" alt="Softyy" className="h-[42px] w-auto max-w-none max-md:h-[36px]" />
+        <div className="brand-shell grid grid-cols-[1fr_auto_1fr] items-center h-[80px] max-md:flex max-md:justify-between max-md:h-[66px]">
+          <Link to="/" className="flex items-center gap-2.5 shrink-0" aria-label={navbar.brandName || 'Global Cosmetics Lines'}>
+            <img
+              src={navbar.logo || '/brand/gcl-main-logo.png'}
+              alt={navbar.brandName || 'Global Cosmetics Lines'}
+              className="h-[46px] w-auto max-w-none object-contain max-md:h-[42px]"
+            />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
-            {navbar.links.map((link, i) => {
+          <nav className="hidden md:flex items-center justify-center gap-8">
+            {centerLinks.map((link, i) => {
               const href = resolveNavHref(link)
               const isActive = location.pathname === href
               return (
                 <Link
                   key={i}
                   to={href}
-                  className={`nav-link text-[0.88rem] font-medium transition-colors duration-200 ${
+                  className={`nav-link text-[0.82rem] font-medium transition-colors duration-200 ${
                     isActive ? 'active text-[var(--color-primary)]' : 'text-[var(--color-ink)]'
                   }`}
                 >
@@ -71,17 +92,26 @@ export default function Navbar() {
                 </Link>
               )
             })}
+          </nav>
+
+          <div className="hidden md:flex items-center justify-end gap-3">
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center rounded-[12px] px-5 py-3 border border-[var(--color-line)] bg-white text-[var(--color-ink)] text-[0.84rem] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--color-rose)]"
+            >
+              Contact
+            </Link>
             <Link
               to="/collection"
-              className="inline-flex items-center gap-1.5 rounded-[8px] px-5 py-2.5 bg-[var(--color-ink)] text-white text-[0.82rem] font-semibold transition-all duration-300 hover:bg-[var(--color-primary)] hover:shadow-[0_8px_24px_rgba(22,24,33,0.18)]"
+              className="inline-flex items-center gap-1.5 rounded-[12px] px-5 py-3 gcl-button text-white text-[0.84rem] font-bold transition-all duration-300 hover:-translate-y-0.5"
             >
               {navbar.ctaBtn}
               <ChevronRight size={14} />
             </Link>
-          </nav>
+          </div>
 
           <button
-            className="md:hidden w-[44px] h-[44px] rounded-[8px] bg-[var(--color-rose)] flex items-center justify-center border border-[var(--color-line)] text-[var(--color-ink)]"
+            className="md:hidden w-[44px] h-[44px] rounded-[8px] bg-white flex items-center justify-center border border-[var(--color-line)] text-[var(--color-primary)]"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Menu"
           >
@@ -97,10 +127,10 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[999] bg-[var(--color-bg)] pt-[80px] px-6"
+            className="fixed inset-0 z-[999] bg-white pt-[84px] px-6"
           >
             <nav className="flex flex-col gap-2">
-            {navbar.links.map((link, i) => {
+            {[...centerLinks, { text: 'Contact', href: '/contact' }].map((link, i) => {
                 const href = resolveNavHref(link)
                 const isActive = location.pathname === href
                 return (
@@ -120,7 +150,7 @@ export default function Navbar() {
               })}
               <Link
                 to="/collection"
-                className="inline-flex items-center justify-center gap-2 rounded-[8px] px-6 py-4 bg-[var(--color-ink)] text-white font-semibold text-[0.95rem] mt-4"
+                className="inline-flex items-center justify-center gap-2 rounded-[8px] px-6 py-4 gcl-button text-white font-semibold text-[0.95rem] mt-4"
                 onClick={() => setMobileOpen(false)}
               >
                 {navbar.ctaBtn}
@@ -130,6 +160,21 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {!isAdmin && (
+        <nav className="mobile-dock md:hidden" aria-label="Quick navigation">
+          {dockLinks.map((item) => {
+            const Icon = item.icon
+            const isActive = location.pathname === item.href || (item.href !== '/' && location.pathname.startsWith(item.href))
+            return (
+              <Link key={item.href} to={item.href} className={isActive ? 'active' : ''}>
+                <Icon size={18} strokeWidth={2.2} />
+                <span>{item.text}</span>
+              </Link>
+            )
+          })}
+        </nav>
+      )}
     </>
   )
 }

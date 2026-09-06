@@ -1,61 +1,85 @@
 import { useData } from '../context/DataContext'
+import { Link } from 'react-router-dom'
 import ScrollReveal from './ScrollReveal'
-import { Shield, FlaskConical, Heart } from 'lucide-react'
+import { ArrowRight, FlaskConical, Heart, Shield } from 'lucide-react'
 
 export default function Story() {
   const { content } = useData()
 
   const story = content?.story || {
     eyebrow: 'The brand story',
-    title: 'A skincare house built around trust.',
-    description: "SoftyyBD is created by Global Cosmetics Line's to make authentic skincare and cosmetics easier to discover, safer to buy, and more enjoyable to use across Bangladesh.",
+    title: 'Global Cosmetics Lines, built around trust.',
+    description: 'Global Cosmetics Lines makes authentic skincare, cosmetics, personal care, and freshness essentials easier to discover, safer to buy, and more enjoyable to use across Bangladesh.',
     items: [
       { icon: 'shield', title: 'Safety comes first', desc: 'A strict zero-tolerance approach to counterfeit products protects every customer order.' },
       { icon: 'flask', title: 'Formulated with care', desc: 'Experienced chemists and an active R&D team guide quality control and product development.' },
-      { icon: 'heart', title: 'Trust in every step', desc: 'From product details to delivery support, SoftyyBD is designed to feel clear and dependable.' },
+      { icon: 'heart', title: 'Trust in every step', desc: 'From product details to delivery support, Global Cosmetics Lines is designed to feel clear and dependable.' },
     ],
-    ctaBtn: 'Partner with Softyy',
+    ctaBtn: 'Partner with GCL',
   }
 
   const iconMap = { shield: Shield, flask: FlaskConical, heart: Heart }
 
   return (
-    <section id="story" className="py-[104px] max-sm:py-[72px] bg-[#eee1d3]/70">
-      <div className="w-[min(1200px,calc(100%-48px))] mx-auto max-sm:w-[min(100%-24px,1200px)]">
-        <div className="grid grid-cols-[0.9fr_1.1fr] gap-12 items-start max-lg:grid-cols-1">
+    <section id="story" className="py-[82px] max-xl:py-[58px] max-sm:py-[50px] surface-band">
+      <div className="brand-shell">
+        <div className="grid grid-cols-[0.88fr_1.12fr] gap-9 items-center max-xl:grid-cols-[0.82fr_1.18fr] max-lg:grid-cols-1">
           <ScrollReveal>
             <span className="section-kicker mb-4">{story.eyebrow}</span>
-            <h2 className="display-title mt-3 mb-0" style={{ fontSize: 'clamp(2.35rem, 4.6vw, 4.2rem)', lineHeight: 1.04 }}>
+            <h2 className="display-title mt-3 mb-0 max-w-[560px]" style={{ fontSize: 'clamp(2.25rem, 4vw, 4rem)', lineHeight: 1.02 }}>
               {story.title}
             </h2>
-            <p className="max-w-[560px] mt-5 leading-[1.78] text-[var(--color-muted)] text-[0.98rem]">
+            <p className="max-w-[550px] mt-5 leading-[1.72] text-[var(--color-muted)] text-[0.98rem] max-xl:text-[0.94rem]">
               {story.description}
             </p>
-            <div className="mt-8 border-t border-[var(--color-line)] pt-5 text-[0.85rem] leading-[1.7] text-[var(--color-muted)]">
+            <div className="mt-7 border-t border-[var(--color-line)] pt-5 text-[0.85rem] leading-[1.65] text-[var(--color-muted)] max-w-[520px]">
               Based in North Kamalapur, Dhaka, the brand serves customers and retail partners with a direct, reachable team.
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-3 gap-0 max-md:grid-cols-1">
-          {story.items.map((item, i) => {
-            const Icon = iconMap[item.icon] || Shield
-            return (
-              <ScrollReveal key={i} delay={i * 0.1}>
-                <div className="bg-[var(--color-paper)] p-7 border-y border-r first:border-l border-[var(--color-line)] transition-all duration-500 hover:bg-white h-full max-md:border-x max-md:border-b-0 max-md:last:border-b">
-                  <div className="w-11 h-11 rounded-[8px] bg-[var(--color-rose)] grid place-items-center mb-6">
-                    <Icon size={21} className="text-[var(--color-primary)]" />
-                  </div>
-                  <h3 className="m-0 mb-3 text-[1.05rem] font-semibold text-[var(--color-ink)]">
-                    {item.title}
-                  </h3>
-                  <p className="m-0 text-[0.88rem] text-[var(--color-muted)] leading-[1.7]">
-                    {item.desc}
-                  </p>
+          <ScrollReveal delay={0.12}>
+            <div className="grid grid-cols-[1fr_170px] gap-4 max-xl:grid-cols-[1fr_142px] max-md:grid-cols-1">
+              <div className="bg-white border border-[var(--color-line)] premium-card p-4 max-xl:p-3">
+                <div className="grid gap-3">
+                  {story.items.map((item, i) => {
+                    const Icon = iconMap[item.icon] || Shield
+                    return (
+                      <div key={i} className="grid grid-cols-[46px_1fr] gap-4 rounded-[8px] border border-[rgba(44,53,132,0.08)] bg-[linear-gradient(135deg,#ffffff,#f7f9ff)] p-4 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(31,43,91,0.08)] max-xl:grid-cols-[40px_1fr] max-xl:gap-3 max-xl:p-3">
+                        <div className="w-11 h-11 rounded-[8px] bg-[var(--color-rose)] grid place-items-center max-xl:w-10 max-xl:h-10">
+                          <Icon size={20} className="text-[var(--color-primary)] max-xl:w-[18px]" />
+                        </div>
+                        <div>
+                          <h3 className="m-0 mb-1 text-[1.02rem] font-semibold leading-[1.28] text-[var(--color-ink)] max-xl:text-[0.94rem]">
+                            {item.title}
+                          </h3>
+                          <p className="m-0 text-[0.86rem] text-[var(--color-muted)] leading-[1.55] max-xl:text-[0.8rem] max-xl:leading-[1.5]">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
-              </ScrollReveal>
-            )
-          })}
-          </div>
+              </div>
+
+              <div className="grid gap-4 max-xl:gap-3 max-md:grid-cols-2 max-sm:grid-cols-1">
+                <div className="bg-[var(--color-primary)] text-white premium-card p-5 flex flex-col justify-between min-h-[176px] max-xl:min-h-[150px] max-xl:p-4">
+                  <span className="text-[0.66rem] uppercase tracking-[0.15em] text-white/62">Brand house</span>
+                  <div>
+                    <strong className="display-title block text-[2.45rem] leading-none max-xl:text-[2rem]">2</strong>
+                    <span className="mt-2 block text-[0.82rem] leading-[1.45] text-white/74">Softyy and Fresh Daily under one trusted company.</span>
+                  </div>
+                </div>
+                <Link to="/story" className="bg-white border border-[var(--color-line)] premium-card p-5 flex flex-col justify-between min-h-[176px] transition-all duration-300 hover:-translate-y-0.5 hover:border-[rgba(44,53,132,0.22)] max-xl:min-h-[150px] max-xl:p-4">
+                  <span className="text-[0.66rem] uppercase tracking-[0.15em] text-[var(--color-primary)]">Since trust matters</span>
+                  <span className="inline-flex items-center gap-2 text-[0.86rem] font-bold text-[var(--color-ink)]">
+                    Read the story
+                    <ArrowRight size={15} />
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

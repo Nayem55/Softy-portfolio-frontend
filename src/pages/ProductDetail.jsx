@@ -37,9 +37,9 @@ export default function ProductDetail() {
     <>
       <Grain />
       <Navbar />
-      <main id="top" className="pt-[100px]">
-        <section className="py-[60px] max-sm:py-[40px]">
-          <div className="w-[min(1180px,calc(100%-40px))] mx-auto max-sm:w-[min(100%-24px,1180px)]">
+      <main id="top" className="pt-[88px]">
+        <section className="py-[48px] max-sm:py-[34px]">
+          <div className="brand-shell">
             <ScrollReveal>
               <div className="flex items-center gap-2 text-sm mb-8">
                 <Link to="/collection" className="text-[var(--color-wine)] font-bold hover:underline">Collection</Link>
@@ -57,9 +57,9 @@ export default function ProductDetail() {
                 )}
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-16 items-start">
-                <div className="rounded-[8px] overflow-hidden softyy-media-frame aspect-square p-8 grid place-items-center border border-[var(--color-line)] premium-card">
-                  <img src={product.image} alt={product.title} className="softyy-media-contain" />
+              <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-10 items-start">
+                <div className="image-card-smooth aspect-square overflow-hidden p-1.5">
+                  <img src={product.image} alt={product.title} className="h-full w-full rounded-[18px] object-cover" />
                 </div>
 
                 <div>
@@ -110,7 +110,7 @@ export default function ProductDetail() {
 
                   <div className="flex gap-3 flex-wrap">
                     {category && (
-                      <Link to={`/categories/${category.slug}`} className="inline-flex items-center justify-center gap-2 rounded-[8px] px-6 py-3 bg-[var(--color-ink)] font-bold text-[0.85rem] transition-all duration-250 hover:-translate-y-0.5 hover:bg-[var(--color-wine)]"
+                      <Link to={`/categories/${category.slug}`} className="inline-flex items-center justify-center gap-2 rounded-[8px] px-6 py-3 gcl-button font-bold text-[0.85rem] transition-all duration-250 hover:-translate-y-0.5"
                         style={{ color: '#ffffff' }}>
                         Browse {category.name}
                       </Link>
@@ -126,21 +126,21 @@ export default function ProductDetail() {
         </section>
 
         {relatedProducts.length > 0 && (
-          <section className="pb-[120px] max-sm:pb-[82px]">
-            <div className="w-[min(1180px,calc(100%-40px))] mx-auto max-sm:w-[min(100%-24px,1180px)]">
+          <section className="pb-[88px] max-sm:pb-[64px]">
+            <div className="brand-shell">
               <h2 className="mb-10" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400, fontSize: '2.5rem', color: 'var(--color-ink)' }}>
                 You May Also Like
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {relatedProducts.map(rp => (
-                  <ScrollReveal key={rp._id}>
-                    <Link to={`/products/${rp.slug || rp._id}`} className="group block bg-[var(--color-paper)] rounded-[8px] overflow-hidden border border-[var(--color-line)] premium-card transition-all duration-300 hover:-translate-y-1">
-                      <div className="aspect-square overflow-hidden softyy-media-frame p-5 grid place-items-center">
-                        <img src={rp.image} alt={rp.title} className="softyy-media-contain transition-transform duration-500 group-hover:scale-[1.02]" />
+                  <ScrollReveal key={rp._id} className="h-full">
+                    <Link to={`/products/${rp.slug || rp._id}`} className="catalog-product-card group flex h-full flex-col overflow-hidden rounded-[20px] bg-white p-1.5 transition-all duration-300 hover:-translate-y-1">
+                      <div className="aspect-[1.08/1] overflow-hidden rounded-[17px] bg-[var(--color-rose)]">
+                        <img src={rp.image} alt={rp.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.035]" />
                       </div>
-                      <div className="p-5">
-                        <span className="text-[0.65rem] font-bold text-[var(--color-wine)] uppercase tracking-wider">{rp.tag}</span>
-                        <h3 className="m-0 mt-1.5 text-[var(--color-ink)] text-[1.1rem]" style={{ fontFamily: 'var(--font-italiana)' }}>{rp.title}</h3>
+                      <div className="flex flex-1 flex-col px-4 pb-4 pt-4">
+                        <span className="text-[0.65rem] font-extrabold text-[var(--color-primary)] uppercase tracking-[0.14em]">{rp.tag}</span>
+                        <h3 className="m-0 mt-2 text-[var(--color-ink)] leading-[1.08]" style={{ fontFamily: 'var(--font-italiana)', fontSize: '1.18rem', fontWeight: 500 }}>{rp.title}</h3>
                       </div>
                     </Link>
                   </ScrollReveal>

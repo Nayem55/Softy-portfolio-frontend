@@ -52,7 +52,7 @@ export default function AdminDashboard() {
                 A
               </span>
               <div>
-                <h1 className="text-sm font-bold text-[var(--color-ink)]" style={{ fontFamily: 'var(--font-italiana)' }}>Softyy Admin</h1>
+                <h1 className="text-sm font-bold text-[var(--color-ink)]" style={{ fontFamily: 'var(--font-italiana)' }}>Global Cosmetics Lines Admin</h1>
                 <p className="text-xs text-[var(--color-muted)]">Welcome, {admin?.username}</p>
               </div>
             </div>

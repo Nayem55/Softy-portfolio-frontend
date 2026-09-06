@@ -1,10 +1,12 @@
+import { useState } from 'react'
 import { useData } from '../context/DataContext'
 import ScrollReveal from './ScrollReveal'
 import { Link } from 'react-router-dom'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowRight, BadgeCheck, FlaskConical } from 'lucide-react'
 
 export default function Products({ limit, showHeader = true, showLink = false }) {
   const { products } = useData()
+  const [activeFilter, setActiveFilter] = useState('all')
 
   const allProducts = products.length > 0 ? products : [
     { _id: '1', title: 'Lemon Face Wash', desc: 'Oil Control · Acne Control · Brightening Deep Cleansing', tag: 'Face Wash', image: '/products/softyy/lemon-face-wash.jpg', size: 'large', price: 350, brandId: 'brand-softyy' },
@@ -15,70 +17,139 @@ export default function Products({ limit, showHeader = true, showLink = false })
     { _id: '6', title: 'Milk Soothing Gel', desc: 'Deep Moisturizing · Sunburn Recovery · 250gm', tag: 'Gel', image: '/products/softyy/milk-soothing-gel.jpg', size: 'third', price: 480, brandId: 'brand-softyy' },
   ]
 
-  const displayProducts = limit ? allProducts.slice(0, limit) : allProducts
+  const filters = [
+    { key: 'all', label: 'All products' },
+    { key: 'cleanser', label: 'Cleansers' },
+    { key: 'acne', label: 'Acne care' },
+    { key: 'gentle', label: 'Gentle care' },
+  ]
+
+  const productMatchesFilter = (product) => {
+    const haystack = `${product.title || ''} ${product.desc || ''} ${product.tag || ''}`.toLowerCase()
+    if (activeFilter === 'all') return true
+    if (activeFilter === 'cleanser') return haystack.includes('face wash') || haystack.includes('cleanser') || haystack.includes('cleansing')
+    if (activeFilter === 'acne') return haystack.includes('acne') || haystack.includes('salicylic')
+    if (activeFilter === 'gentle') return haystack.includes('gentle') || haystack.includes('milk') || haystack.includes('soothing')
+    return true
+  }
+
+  const filteredProducts = allProducts.filter(productMatchesFilter)
+  const displayProducts = limit ? filteredProducts.slice(0, limit) : filteredProducts
+
+  const formatTag = (product) => {
+    const text = `${product.title || ''} ${product.desc || ''} ${product.tag || ''}`.toLowerCase()
+    if (text.includes('acne') || text.includes('salicylic')) return 'Acne Care'
+    if (text.includes('milk') || text.includes('soothing') || text.includes('gentle')) return 'Gentle Care'
+    if (text.includes('face wash') || text.includes('cleanser') || text.includes('cleansing')) return 'Cleanser'
+    return product.tag || 'Care'
+  }
+
+  const formatBrand = (product) => {
+    const text = `${product.brandId || ''} ${product.brand || ''}`.toLowerCase()
+    if (text.includes('fresh')) return 'Fresh Daily'
+    return 'Softyy'
+  }
 
   return (
-    <section id="collection" className="py-[104px] max-sm:py-[72px]">
-      <div className="w-[min(1200px,calc(100%-48px))] mx-auto max-sm:w-[min(100%-24px,1200px)]">
+    <section id="collection" className="product-shelf-section py-[76px] max-xl:py-[58px] max-sm:py-[52px]">
+      <div className="brand-shell">
         {showHeader && (
-          <ScrollReveal className="mb-[52px] grid grid-cols-[0.9fr_1.1fr] gap-10 items-end max-md:grid-cols-1">
-            <div>
-              <span className="section-kicker mb-4">The Softyy Edit</span>
-              <h2 className="display-title mt-3 mb-0" style={{ fontSize: 'clamp(2.35rem, 4.4vw, 4rem)', lineHeight: 1.04 }}>
-                A shelf built for repeat use.
-              </h2>
+          <ScrollReveal className="mb-6">
+            <div className="product-shelf-head">
+              <div className="grid grid-cols-[0.85fr_1.15fr] gap-8 items-end max-lg:grid-cols-1 max-lg:gap-5">
+                <div>
+                  <span className="section-kicker mb-4">The everyday shelf</span>
+                  <h2 className="display-title mt-3 mb-0 max-w-[620px]" style={{ fontSize: 'clamp(2.35rem, 4vw, 4.05rem)', lineHeight: 0.95, fontWeight: 700 }}>
+                    A polished shelf for daily care.
+                  </h2>
+                </div>
+                <div className="max-w-[650px] lg:ml-auto">
+                  <p className="leading-[1.65] text-[var(--color-muted)] text-[0.94rem] m-0">
+                    Shop by skin need, compare benefits quickly, and move from Softyy skincare to Fresh Daily essentials without decoding a long catalogue.
+                  </p>
+                  <div className="mt-5 grid grid-cols-2 gap-3 max-sm:grid-cols-1">
+                    <div className="product-proof-pill">
+                      <BadgeCheck size={16} />
+                      <span>Authentic products only</span>
+                    </div>
+                    <div className="product-proof-pill">
+                      <FlaskConical size={16} />
+                      <span>Clear routine benefits</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-7 flex items-center justify-between gap-4 border-t border-[var(--color-line)] pt-5 max-md:flex-col max-md:items-start">
+                <div className="shelf-filter-row flex flex-wrap gap-2 max-sm:flex-nowrap max-sm:w-full max-sm:overflow-x-auto max-sm:pb-1">
+                  {filters.map((filter) => (
+                    <button
+                      key={filter.key}
+                      type="button"
+                      onClick={() => setActiveFilter(filter.key)}
+                      className={`rounded-full border px-4 py-2 text-[0.72rem] font-bold transition-all duration-200 whitespace-nowrap ${
+                        activeFilter === filter.key
+                          ? 'border-[var(--color-primary)] bg-[var(--color-primary)] text-white shadow-[0_12px_24px_rgba(44,53,132,0.2)]'
+                          : 'border-[var(--color-line)] bg-white/80 text-[var(--color-muted)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]'
+                      }`}
+                    >
+                      {filter.label}
+                    </button>
+                  ))}
+                </div>
+                <span className="text-[0.72rem] font-bold uppercase tracking-[0.12em] text-[var(--color-muted)]">
+                  {displayProducts.length} curated picks
+                </span>
+              </div>
             </div>
-            <p className="max-w-[560px] md:ml-auto leading-[1.75] text-[var(--color-muted)] text-[0.96rem] m-0">
-              Cleansers, treatment care, soothing gel, soaps, and Fresh Daily essentials arranged around the routines customers actually come back to.
-            </p>
           </ScrollReveal>
         )}
 
-        <div className="grid grid-cols-12 gap-x-5 gap-y-8">
+        <div className="grid grid-cols-3 gap-5 mobile-product-rail max-xl:gap-4 max-lg:grid-cols-2 max-md:grid-cols-2">
           {displayProducts.map((product, i) => {
-            const isLarge = product.size === 'large'
-            const isSide = product.size === 'side'
             return (
               <ScrollReveal
                 key={product._id || i}
-                className={`${
-                  isLarge ? 'col-span-7 max-lg:!col-span-12' :
-                  isSide ? 'col-span-5 max-lg:!col-span-12' :
-                  'col-span-4 max-md:!col-span-6 max-sm:!col-span-12'
-                }`}
+                className="min-w-0"
               >
                 <Link
-                  to={`/products/${product.slug}`}
-                  className="group grid h-full overflow-hidden bg-[var(--color-paper)] border border-[var(--color-line)] premium-card transition-all duration-500 hover:-translate-y-1"
+                  to={`/products/${product.slug || product._id}`}
+                  className="product-card-premium group flex h-full min-h-[400px] flex-col overflow-hidden rounded-[20px] bg-white p-1.5 transition-all duration-500 hover:-translate-y-1 max-xl:min-h-[372px] max-sm:min-h-[390px]"
                 >
-                  <div className={`relative media-frame grid place-items-center overflow-hidden ${isLarge || isSide ? 'aspect-[1.32/1]' : 'aspect-[1.02/1]'} p-7 max-sm:p-5`}>
+                  <div className="relative h-[236px] overflow-hidden rounded-[17px] bg-[var(--color-rose)] max-xl:h-[202px] max-sm:h-[220px]">
                     <img
                       src={product.image}
                       alt={product.title}
-                      className="softyy-media-contain transition-transform duration-700 group-hover:scale-[1.04]"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     />
-                    <span className="absolute top-4 left-4 bg-[var(--color-paper)]/90 backdrop-blur-sm py-1.5 px-3 rounded-[6px] text-[0.66rem] font-bold text-[var(--color-primary)] uppercase tracking-wider">
-                      {product.tag}
-                    </span>
-                    <div className="absolute top-4 right-4 w-9 h-9 rounded-[8px] bg-[var(--color-paper)]/90 backdrop-blur-sm grid place-items-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 shadow-[0_10px_24px_rgba(26,26,46,0.08)]">
-                      <ArrowUpRight size={16} className="text-[var(--color-ink)]" />
-                    </div>
-                  </div>
-                  <div className="p-6 border-t border-[var(--color-line)]">
-                    <span className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-[var(--color-accent)]">0{i + 1}</span>
-                    <div className="flex items-start justify-between gap-4">
-                      <h3 className="display-title m-0 mt-2 text-[1.55rem] leading-tight text-[var(--color-ink)]">
-                        {product.title}
-                      </h3>
+                    <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-3">
+                      <span className="rounded-full bg-white/90 px-3 py-1.5 text-[0.62rem] font-extrabold uppercase tracking-[0.12em] text-[var(--color-primary)] shadow-[0_10px_22px_rgba(18,23,44,0.08)] backdrop-blur">
+                        {formatTag(product)}
+                      </span>
                       {product.price && (
-                        <span className="shrink-0 rounded-[6px] bg-[var(--color-rose)] px-3 py-1.5 text-[0.76rem] font-bold text-[var(--color-primary)]">
+                        <span className="rounded-full bg-[var(--color-primary)] px-3 py-1.5 text-[0.64rem] font-bold text-white shadow-[0_10px_24px_rgba(44,53,132,0.22)]">
                           BDT {product.price}
                         </span>
                       )}
                     </div>
-                    <p className="m-0 mt-2 text-[0.86rem] text-[var(--color-muted)] leading-[1.65]">
+                  </div>
+                  <div className="flex flex-1 flex-col px-4 pb-4 pt-5 max-xl:pt-4">
+                    <span className="text-[0.66rem] font-bold uppercase tracking-[0.14em] text-[var(--color-muted)]">{formatBrand(product)}</span>
+                    <h3 className="display-title m-0 mt-2 text-[1.48rem] leading-[1.05] text-[var(--color-ink)] max-xl:text-[1.28rem]" style={{ fontWeight: 700 }}>
+                      {product.title}
+                    </h3>
+                    <p className="m-0 mt-3 text-[0.8rem] text-[var(--color-muted)] leading-[1.55] line-clamp-2 max-xl:text-[0.76rem]">
                       {product.desc}
                     </p>
+                    <div className="mt-auto flex items-center justify-between gap-3 border-t border-[rgba(44,53,132,0.08)] pt-5 max-xl:pt-4">
+                      <span className="inline-flex items-center gap-1.5 text-[0.78rem] font-extrabold text-[var(--color-primary)] max-xl:text-[0.74rem]">
+                        View product
+                        <ArrowRight size={13} />
+                      </span>
+                      <span className="rounded-full bg-[#f4f6ff] px-3 py-1.5 text-[0.68rem] font-semibold text-[var(--color-primary)] max-xl:px-2.5">
+                        Details
+                      </span>
+                    </div>
                   </div>
                 </Link>
               </ScrollReveal>
@@ -87,13 +158,13 @@ export default function Products({ limit, showHeader = true, showLink = false })
         </div>
 
         {showLink && (
-          <ScrollReveal className="text-center mt-12">
+          <ScrollReveal className="text-center mt-9">
             <Link
               to="/collection"
-              className="inline-flex items-center gap-2 rounded-[8px] px-8 py-3.5 bg-[var(--color-ink)] text-white font-semibold text-[0.88rem] transition-all duration-300 hover:bg-[var(--color-primary)] hover:shadow-[0_12px_32px_rgba(22,24,33,0.18)] hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-[8px] px-8 py-3.5 gcl-button text-white font-bold text-[0.88rem] transition-all duration-300 hover:-translate-y-0.5"
             >
               View Full Collection
-              <ArrowUpRight size={16} />
+              <ArrowRight size={16} />
             </Link>
           </ScrollReveal>
         )}

@@ -24,20 +24,20 @@ export default function Collection() {
     <>
       <Grain />
       <Navbar />
-      <main id="top" className="pt-[100px]">
-        <section className="py-[64px] max-sm:py-[42px]">
-          <div className="w-[min(1180px,calc(100%-40px))] mx-auto max-sm:w-[min(100%-24px,1180px)]">
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.96fr] gap-14 items-center">
+      <main id="top" className="pt-[88px]">
+        <section className="py-[48px] max-sm:py-[34px]">
+          <div className="brand-shell">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_0.96fr] gap-10 items-center">
               <ScrollReveal>
                 <span className="uppercase tracking-[0.18em] text-[0.74rem] font-bold text-[var(--color-wine)] inline-flex items-center gap-2.5 mb-5">
                   <span className="w-7 h-px bg-[var(--color-wine)]" />
-                  {page.eyebrow || 'The SoftyyBD Edit'}
+                  {page.eyebrow || 'The GCL Edit'}
                 </span>
                 <h1 className="mb-0" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400, fontSize: 'clamp(3rem, 7vw, 6rem)', lineHeight: 0.95 }}>
                   {page.title || 'Curated care for everyday confidence.'}
                 </h1>
                 <p className="mt-5 text-[var(--color-muted)] text-[1.05rem] leading-[1.75] max-w-[640px]">
-                  {page.description || 'Explore skincare, cosmetics, soap, and freshness essentials from the SoftyyBD brand family, selected for practical routines and reliable quality.'}
+                  {page.description || 'Explore skincare, cosmetics, soap, and freshness essentials from the Global Cosmetics Lines brand family, selected for practical routines and reliable quality.'}
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8">
                   {[
@@ -60,10 +60,10 @@ export default function Collection() {
                     <Link
                       key={product._id}
                       to={`/products/${product.slug || product._id}`}
-                      className={`${index === 0 ? 'col-span-2' : ''} group rounded-[8px] overflow-hidden bg-white border border-[var(--color-line)] premium-card transition-all duration-300 hover:-translate-y-1`}
+                      className={`${index === 0 ? 'col-span-2' : ''} image-card-smooth group block overflow-hidden transition-all duration-300 hover:-translate-y-1`}
                     >
-                      <div className={`${index === 0 ? 'aspect-[2.2/1]' : 'aspect-square'} media-frame p-5 grid place-items-center`}>
-                        <img src={product.image} alt={product.title} className="softyy-media-contain transition-transform duration-500 group-hover:scale-[1.03]" />
+                      <div className={`${index === 0 ? 'aspect-[2.2/1]' : 'aspect-square'} overflow-hidden rounded-[18px]`}>
+                        <img src={product.image} alt={product.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
                       </div>
                     </Link>
                   ))}
@@ -74,7 +74,7 @@ export default function Collection() {
         </section>
 
         <section className="pb-[40px]">
-          <div className="w-[min(1180px,calc(100%-40px))] mx-auto max-sm:w-[min(100%-24px,1180px)]">
+          <div className="brand-shell">
             <ScrollReveal>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 {trustItems.map((item, index) => {
@@ -96,8 +96,8 @@ export default function Collection() {
         </section>
 
         {categories.length > 0 && (
-          <section className="py-[70px] max-sm:py-[54px] bg-white/55">
-            <div className="w-[min(1180px,calc(100%-40px))] mx-auto max-sm:w-[min(100%-24px,1180px)]">
+          <section className="py-[62px] max-sm:py-[48px] surface-band">
+            <div className="brand-shell">
               <div className="flex items-end justify-between gap-6 mb-9 max-sm:flex-col max-sm:items-start">
                 <ScrollReveal>
                   <span className="uppercase tracking-[0.18em] text-[0.72rem] font-bold text-[var(--color-accent)]">{page.categoryEyebrow || 'Shop By Need'}</span>
@@ -113,11 +113,11 @@ export default function Collection() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                 {categories.slice(0, 5).map((category) => (
                   <ScrollReveal key={category._id}>
-                    <Link to={`/categories/${category.slug}`} className="group block rounded-[8px] bg-white border border-[var(--color-line)] overflow-hidden premium-card transition-all duration-300 hover:-translate-y-1">
-                      <div className="aspect-square media-frame p-5 grid place-items-center">
-                        <img src={category.image} alt={category.name} className="softyy-media-contain transition-transform duration-500 group-hover:scale-[1.03]" />
+                    <Link to={`/categories/${category.slug}`} className="image-card-smooth group block overflow-hidden transition-all duration-300 hover:-translate-y-1">
+                      <div className="aspect-square overflow-hidden rounded-[18px]">
+                        <img src={category.image} alt={category.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
                       </div>
-                      <div className="p-5">
+                      <div className="px-4 pb-4 pt-5">
                         <h3 className="m-0 text-[1.25rem]" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400 }}>{category.name}</h3>
                         <p className="m-0 mt-2 text-[0.78rem] leading-[1.55] text-[var(--color-muted)]">{category.description}</p>
                       </div>

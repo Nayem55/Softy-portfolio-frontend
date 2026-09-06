@@ -35,16 +35,16 @@ export default function AdminLogin() {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-4">
             <span className="w-[132px] h-[52px] rounded-full grid place-items-center bg-white border border-[var(--color-line)] px-3 shadow-[0_12px_40px_rgba(20,32,66,0.12)]">
-              <img src="/brand/softyy-logo.png" alt="Softyy" className="softyy-media-contain" />
+              <img src="/brand/gcl-main-logo.png" alt="Global Cosmetics Lines" className="softyy-media-contain" />
             </span>
           </div>
           <h1
             className="text-3xl text-[var(--color-ink)] mb-2"
             style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400 }}
           >
-            Admin Panel
+            Global Cosmetics Lines Admin
           </h1>
-          <p className="text-[var(--color-muted)] text-sm">Sign in to manage your portfolio</p>
+          <p className="text-[var(--color-muted)] text-sm">Sign in to manage the company portfolio</p>
         </div>
 
         <div className="bg-[var(--color-paper)] rounded-[28px] p-8 shadow-[0_24px_80px_rgba(66,27,38,0.14)] border border-[var(--color-line)]">

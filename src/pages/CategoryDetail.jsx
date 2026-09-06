@@ -32,10 +32,10 @@ export default function CategoryDetail() {
     <>
       <Grain />
       <Navbar />
-      <main id="top" className="pt-[100px]">
-        <section className="py-[60px] max-sm:py-[40px]">
-          <div className="w-[min(1180px,calc(100%-40px))] mx-auto max-sm:w-[min(100%-24px,1180px)]">
-            <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 items-center">
+      <main id="top" className="pt-[88px]">
+        <section className="py-[48px] max-sm:py-[34px]">
+          <div className="brand-shell">
+            <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-9 items-center">
               <div>
                 <Link to="/categories" className="text-[var(--color-wine)] text-sm font-bold hover:underline mb-6 inline-block">← All Categories</Link>
                 <h1 className="m-0 text-[var(--color-ink)]" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400, fontSize: 'clamp(3rem, 6vw, 5rem)', lineHeight: 0.95 }}>
@@ -43,29 +43,29 @@ export default function CategoryDetail() {
                 </h1>
                 <p className="text-[var(--color-muted)] text-[1.05rem] leading-[1.7] mt-4 max-w-[540px]">{category.description}</p>
               </div>
-              <div className="aspect-[1.35/1] rounded-[8px] overflow-hidden softyy-media-frame border border-[var(--color-line)] p-8 grid place-items-center premium-card">
-                <img src={category.image} alt={category.name} className="softyy-media-contain" />
+              <div className="image-card-smooth aspect-[1.35/1] overflow-hidden p-1.5">
+                <img src={category.image} alt={category.name} className="h-full w-full rounded-[18px] object-cover" />
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-[80px] max-sm:py-[50px]">
-          <div className="w-[min(1180px,calc(100%-40px))] mx-auto max-sm:w-[min(100%-24px,1180px)]">
+        <section className="py-[64px] max-sm:py-[48px]">
+          <div className="brand-shell">
             {categoryProducts.length === 0 ? (
               <p className="text-[var(--color-muted)] py-10 text-center">No products in this category yet.</p>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {categoryProducts.map(product => (
-                  <ScrollReveal key={product._id}>
-                    <Link to={`/products/${product.slug || product._id}`} className="group block bg-[var(--color-paper)] rounded-[8px] overflow-hidden border border-[var(--color-line)] premium-card transition-all duration-300 hover:-translate-y-1">
-                      <div className="aspect-square overflow-hidden softyy-media-frame p-5 grid place-items-center">
-                        <img src={product.image} alt={product.title} className="softyy-media-contain transition-transform duration-500 group-hover:scale-[1.02]" />
+                  <ScrollReveal key={product._id} className="h-full">
+                    <Link to={`/products/${product.slug || product._id}`} className="catalog-product-card group flex h-full flex-col overflow-hidden rounded-[20px] bg-white p-1.5 transition-all duration-300 hover:-translate-y-1">
+                      <div className="aspect-[1.1/1] overflow-hidden rounded-[17px] bg-[var(--color-rose)]">
+                        <img src={product.image} alt={product.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.035]" />
                       </div>
-                      <div className="p-6">
-                        <span className="text-[0.7rem] font-bold text-[var(--color-wine)] uppercase tracking-wider">{product.tag}</span>
-                        <h3 className="m-0 mt-2 text-[var(--color-ink)]" style={{ fontFamily: 'var(--font-italiana)', fontSize: '1.4rem' }}>{product.title}</h3>
-                        <p className="text-[var(--color-muted)] text-[0.85rem] mt-2 line-clamp-2">{product.desc}</p>
+                      <div className="flex flex-1 flex-col px-4 pb-4 pt-5">
+                        <span className="text-[0.68rem] font-extrabold text-[var(--color-primary)] uppercase tracking-[0.14em]">{product.tag}</span>
+                        <h3 className="m-0 mt-3 text-[var(--color-ink)] leading-[1.08]" style={{ fontFamily: 'var(--font-italiana)', fontSize: '1.5rem', fontWeight: 500 }}>{product.title}</h3>
+                        <p className="text-[var(--color-muted)] text-[0.86rem] leading-[1.55] mt-3 mb-0 line-clamp-2">{product.desc}</p>
                       </div>
                     </Link>
                   </ScrollReveal>

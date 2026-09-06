@@ -5,33 +5,33 @@ const DataContext = createContext(null)
 
 export const softyyContent = {
   hero: {
-    eyebrow: 'Skin care, made close to home',
+    eyebrow: 'Global Cosmetics Lines - care made close to home',
     title: 'Care that feels',
     titleItalic: 'quietly certain.',
-    description: 'SoftyyBD brings authentic skincare and freshness essentials to Bangladesh with practical formulas, careful sourcing, and support people can actually reach.',
+    description: 'A cleaner, warmer storefront for everyday skincare - easy to scan, easy to trust, and designed around the way real customers browse.',
     primaryBtn: 'Explore the Collection',
     secondaryBtn: 'Our Story',
     image: '/editorial/softyy-hero-editorial.png',
     floatingCard: {
-      small: 'Current Focus',
-      title: 'Oil Control',
-      desc: 'Daily cleansers and serum care for humid-weather routines.',
+      small: 'Customer Focus',
+      title: 'Oil control, without the noise.',
+      desc: 'Simple guidance, clear product intent.',
       image: '/products/softyy/acne-serum.jpg',
     },
     stats: [
-      { label: '100% Authentic', sublabel: 'Zero counterfeit policy' },
-      { label: 'In-house Lab', sublabel: 'R&D guided quality' },
-      { label: 'BD-wide', sublabel: 'Reliable delivery' },
+      { label: 'Everyday-first formulas', sublabel: '' },
+      { label: 'Careful product curation', sublabel: '' },
+      { label: 'Support you can reach', sublabel: '' },
     ],
   },
   marquee: {
-    items: ['Authentic products', 'In-house quality care', 'Bangladesh-wide delivery', 'SoftyyBD', 'Fresh Daily'],
+    items: ['Global Cosmetics Lines', 'Authentic products', 'In-house quality care', 'Bangladesh-wide delivery', 'Softyy', 'Fresh Daily'],
   },
   manifesto: {
     eyebrow: 'How we work',
     title: 'A routine should feel simple before it feels beautiful.',
     description: 'Every product decision starts with usefulness: clear skin concerns, honest care claims, accessible pricing, and quality checks that make repeat purchase feel easy.',
-    quote: 'We are building SoftyyBD for the customer who reads the label, checks the seal, and still wants the experience to feel beautiful.',
+    quote: 'We are building Global Cosmetics Lines for customers who read the label, check the seal, and still want the experience to feel beautiful.',
     stats: [
       { number: '01', label: 'Verified sourcing' },
       { number: '02', label: 'R&D guided quality' },
@@ -41,54 +41,55 @@ export const softyyContent = {
   },
   story: {
     eyebrow: 'The brand story',
-    title: 'Global Cosmetics Line\'s, built for everyday trust.',
-    description: 'SoftyyBD was created to make authentic skincare, personal care, and home freshness products easier to discover and safer to buy across Bangladesh.',
+    title: 'Global Cosmetics Lines, built for everyday trust.',
+    description: 'Global Cosmetics Lines was created to make authentic skincare, personal care, and home freshness products easier to discover and safer to buy across Bangladesh.',
     items: [
       { icon: 'shield', title: 'Authentic by policy', desc: 'A zero-counterfeit approach keeps trust at the center of the customer experience.' },
       { icon: 'flask', title: 'Guided by formulation care', desc: 'An active quality mindset, chemist involvement, and R&D direction shape how products are developed.' },
-      { icon: 'heart', title: 'Made for real routines', desc: 'From face wash to air freshener, the portfolio is practical, affordable, and easy to use daily.' },
+      { icon: 'heart', title: 'Made for real routines', desc: 'From Softyy face care to Fresh Daily essentials, the portfolio is practical, affordable, and easy to use daily.' },
     ],
-    ctaBtn: 'Contact SoftyyBD',
+    ctaBtn: 'Contact Global Cosmetics Lines',
   },
   testimonial: {
     stars: 5,
     quote: 'Authentic care, fair pricing, and useful formulas should belong in the same routine.',
-    person: 'SOFTYYBD',
+    person: 'GLOBAL COSMETICS LINES',
     role: 'Brand Promise',
   },
   cta: {
     eyebrow: 'Business & support',
-    title: 'For retail, distribution, or customer care, talk to the SoftyyBD team.',
+    title: 'For retail, distribution, or customer care, talk to Global Cosmetics Lines.',
     description: 'Connect with Global Cosmetics Line\'s for partnerships, product questions, delivery support, and brand inquiries.',
     email: 'globalcosmeticslines@gmail.com',
     image: '/editorial/softyy-boutique-care.png',
   },
   footer: {
-    description: 'Authentic skincare and freshness essentials from Global Cosmetics Line\'s. Feel The Pure Softness.',
+    description: 'The beauty house behind Softyy skincare and Fresh Daily essentials. Feel The Pure Softness.',
     columns: [
       { title: 'Discover', links: [{ text: 'Collection', href: '/collection' }, { text: 'Our Story', href: '/story' }, { text: 'Philosophy', href: '/philosophy' }] },
       { title: 'Business', links: [{ text: 'Distribution', href: '/contact' }, { text: 'Retail', href: '/contact' }, { text: 'Support', href: '/contact' }] },
       { title: 'Social', links: [{ text: 'Facebook', href: 'https://www.facebook.com/softyybd' }, { text: 'WhatsApp', href: 'https://wa.me/8801911238421' }, { text: 'Email', href: 'mailto:globalcosmeticslines@gmail.com' }] },
     ],
-    copyright: '2026 Global Cosmetics Line\'s. All rights reserved.',
+    copyright: '2026 Global Cosmetics Lines. All rights reserved.',
     tagline: 'Feel The Pure Softness.',
   },
   navbar: {
-    brandName: 'SOFTYY',
-    brandInitial: 'S',
+    brandName: 'Global Cosmetics Lines',
+    brandInitial: 'G',
+    logo: '/brand/gcl-main-logo.png',
     links: [
       { text: 'Collection', href: '/collection' },
-      { text: 'Our Story', href: '/story' },
+      { text: 'Our brands', href: '/brands' },
       { text: 'Philosophy', href: '/philosophy' },
-      { text: 'Contact', href: '/contact' },
+      { text: 'Our Story', href: '/story' },
     ],
     ctaBtn: 'Explore Beauty',
   },
   pages: {
     collection: {
-      eyebrow: 'The SoftyyBD Edit',
+      eyebrow: 'The GCL Edit',
       title: 'Curated care for everyday confidence.',
-      description: 'Explore skincare, cosmetics, soap, and freshness essentials from the SoftyyBD brand family, selected for practical routines and reliable quality.',
+      description: 'Explore skincare, cosmetics, soap, and freshness essentials from the Global Cosmetics Lines brand family, selected for practical routines and reliable quality.',
       categoryEyebrow: 'Shop By Need',
       categoryTitle: 'Find the right daily routine.',
       trustItems: [
@@ -101,7 +102,7 @@ export const softyyContent = {
     story: {
       eyebrow: 'Our Story',
       title: 'A beauty house built around trust.',
-      description: 'SoftyyBD brings authentic cosmetics, skincare, and freshness essentials to customers who want clear claims, practical formulas, and a smoother shopping experience.',
+      description: 'Global Cosmetics Lines brings authentic cosmetics, skincare, and freshness essentials to customers who want clear claims, practical formulas, and a smoother shopping experience.',
       image: '/products/softyy/cover.jpg',
       stats: [
         { number: '2', label: 'Core brands' },
@@ -111,7 +112,7 @@ export const softyyContent = {
       journeyEyebrow: 'Brand Journey',
       journeyTitle: 'From careful sourcing to confident daily use.',
       chapters: [
-        { label: 'Founded with a clear promise', title: 'Authentic care first', text: 'SoftyyBD was created by Global Cosmetics Line\'s to make trustworthy skincare easier to find, easier to understand, and easier to buy across Bangladesh.' },
+        { label: 'Founded with a clear promise', title: 'Authentic care first', text: 'Global Cosmetics Lines was created to make trustworthy skincare easier to find, easier to understand, and easier to buy across Bangladesh.' },
         { label: 'Built for everyday routines', title: 'Beauty that feels usable', text: 'The portfolio focuses on practical skin and lifestyle needs: cleansers, serums, gels, soaps, and home freshness products designed for daily confidence.' },
         { label: 'Made to scale responsibly', title: 'Quality before noise', text: 'Every brand expression is shaped around reliable sourcing, in-house quality thinking, and direct support so customers can shop with more clarity.' },
       ],
@@ -131,12 +132,12 @@ export const softyyContent = {
     philosophy: {
       eyebrow: 'Our Philosophy',
       title: 'Simple care, serious standards.',
-      description: 'SoftyyBD believes healthy skin should feel accessible, transparent, and dependable. The philosophy is practical: verified products, fair value, careful formulation, and support that respects the customer.',
+      description: 'Global Cosmetics Lines believes healthy skin should feel accessible, transparent, and dependable. The philosophy is practical: verified products, fair value, careful formulation, and support that respects the customer.',
       statement: 'Beauty should never ask customers to choose between confidence, clarity, and care.',
-      statementDetail: 'That is why SoftyyBD combines authenticity, quality control, and accessible pricing into one customer promise.',
+      statementDetail: 'That is why Global Cosmetics Lines combines authenticity, quality control, and accessible pricing into one customer promise.',
       image: '/editorial/softyy-lab-ritual.png',
       principlesEyebrow: 'Operating Principles',
-      principlesTitle: 'The rules behind the SoftyyBD experience.',
+      principlesTitle: 'The rules behind the Global Cosmetics Lines experience.',
       principles: [
         { title: 'Authenticity is non-negotiable', text: 'A strict zero-counterfeit position protects customer trust and keeps the portfolio focused on verified products.' },
         { title: 'Quality starts before launch', text: 'R&D, chemist guidance, and inspection routines help each formula move from idea to shelf with better discipline.' },
@@ -162,7 +163,7 @@ export const softyyContent = {
       ],
     },
     contact: {
-      eyebrow: 'Contact SoftyyBD',
+      eyebrow: 'Contact Global Cosmetics Lines',
       title: 'Let us make care easier to reach.',
       description: 'Reach Global Cosmetics Line\'s for distribution, retail partnerships, customer support, collaborations, press requests, and brand inquiries.',
       email: 'globalcosmeticslines@gmail.com',
@@ -198,16 +199,35 @@ const isDemoContent = (value) => {
     'arowbee.com',
   ].some((needle) => text.includes(needle))
 }
+const normalizeCompanyLanguage = (value, key = '') => {
+  if (Array.isArray(value)) return value.map((item) => normalizeCompanyLanguage(item, key))
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.entries(value).map(([entryKey, entryValue]) => [
+        entryKey,
+        normalizeCompanyLanguage(entryValue, entryKey),
+      ])
+    )
+  }
+  if (typeof value !== 'string') return value
+  if (['href', 'url', 'image', 'images', 'logo', 'email', 'phone', 'whatsappUrl', 'facebookUrl'].includes(key)) return value
+
+  return value
+    .replaceAll('Global Cosmetics Line\'s', 'Global Cosmetics Lines')
+    .replaceAll('SOFTYYBD', 'GLOBAL COSMETICS LINES')
+    .replaceAll('SoftyyBD', 'Global Cosmetics Lines')
+}
+
 const normalizeContent = (value) => {
-  if (!isDemoContent(value)) return value
-  return {
+  if (!isDemoContent(value)) return normalizeCompanyLanguage(value)
+  return normalizeCompanyLanguage({
     ...value,
     ...softyyContent,
     pages: {
       ...softyyContent.pages,
       ...(value?.pages || {}),
     },
-  }
+  })
 }
 
 const fallbackBrands = [

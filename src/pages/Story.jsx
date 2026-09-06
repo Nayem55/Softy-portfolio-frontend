@@ -11,7 +11,7 @@ const chapters = [
   {
     label: 'Founded with a clear promise',
     title: 'Authentic care first',
-    text: 'SoftyyBD was created by Global Cosmetics Line\'s to make trustworthy skincare easier to find, easier to understand, and easier to buy across Bangladesh.',
+    text: 'Global Cosmetics Lines was created to make trustworthy skincare easier to find, easier to understand, and easier to buy across Bangladesh.',
   },
   {
     label: 'Built for everyday routines',
@@ -47,10 +47,10 @@ export default function StoryPage() {
     <>
       <Grain />
       <Navbar />
-      <main id="top" className="pt-[100px]">
-        <section className="py-[64px] max-sm:py-[42px]">
-          <div className="w-[min(1180px,calc(100%-40px))] mx-auto max-sm:w-[min(100%-24px,1180px)]">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.02fr_0.98fr] gap-14 items-center">
+      <main id="top" className="pt-[88px]">
+        <section className="py-[48px] max-sm:py-[34px]">
+          <div className="brand-shell">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.02fr_0.98fr] gap-10 items-center">
               <ScrollReveal>
                 <span className="uppercase tracking-[0.18em] text-[0.74rem] font-bold text-[var(--color-wine)] inline-flex items-center gap-2.5 mb-5">
                   <span className="w-7 h-px bg-[var(--color-wine)]" />
@@ -60,10 +60,10 @@ export default function StoryPage() {
                   {page.title || 'A beauty house built around trust.'}
                 </h1>
                 <p className="mt-5 text-[var(--color-muted)] text-[1.05rem] leading-[1.75] max-w-[620px]">
-                  {page.description || 'SoftyyBD brings authentic cosmetics, skincare, and freshness essentials to customers who want clear claims, practical formulas, and a smoother shopping experience.'}
+                  {page.description || 'Global Cosmetics Lines brings authentic cosmetics, skincare, and freshness essentials to customers who want clear claims, practical formulas, and a smoother shopping experience.'}
                 </p>
                 <div className="flex gap-3 flex-wrap mt-8">
-                  <Link to="/collection" className="inline-flex items-center gap-2 rounded-[8px] px-7 py-3.5 bg-[var(--color-primary)] text-white font-semibold text-[0.88rem] transition-all duration-300 hover:bg-[#14307a] hover:-translate-y-0.5">
+                  <Link to="/collection" className="inline-flex items-center gap-2 rounded-[8px] px-7 py-3.5 gcl-button text-white font-bold text-[0.88rem] transition-all duration-300 hover:-translate-y-0.5">
                     Explore Collection
                     <ArrowRight size={16} />
                   </Link>
@@ -74,8 +74,8 @@ export default function StoryPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.12}>
-                <div className="rounded-[8px] border border-[var(--color-line)] media-frame p-8 premium-card">
-                  <img src={page.image || '/products/softyy/cover.jpg'} alt="Softyy skincare collection" className="w-full object-contain rounded-[8px]" />
+                <div className="image-card-smooth p-1.5">
+                  <img src={page.image || '/products/softyy/cover.jpg'} alt="Softyy skincare collection" className="w-full aspect-[1.28/1] object-cover rounded-[18px]" />
                   <div className="grid grid-cols-3 gap-3 mt-6">
                     {stats.map(({ number, label }) => (
                       <div key={label} className="rounded-[8px] bg-white/78 border border-white/70 p-4 text-center">
@@ -90,9 +90,9 @@ export default function StoryPage() {
           </div>
         </section>
 
-        <section className="py-[90px] max-sm:py-[64px] bg-white/55">
-          <div className="w-[min(1180px,calc(100%-40px))] mx-auto max-sm:w-[min(100%-24px,1180px)]">
-            <ScrollReveal className="max-w-[720px] mb-12">
+        <section className="py-[72px] max-sm:py-[54px] surface-band">
+          <div className="brand-shell">
+            <ScrollReveal className="max-w-[720px] mb-9">
               <span className="uppercase tracking-[0.18em] text-[0.72rem] font-bold text-[var(--color-accent)]">{page.journeyEyebrow || 'Brand Journey'}</span>
               <h2 className="mt-4 mb-0" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400, fontSize: 'clamp(2.4rem, 5vw, 4.4rem)', lineHeight: 1.02 }}>
                 {page.journeyTitle || 'From careful sourcing to confident daily use.'}
@@ -112,9 +112,9 @@ export default function StoryPage() {
           </div>
         </section>
 
-        <section className="py-[90px] max-sm:py-[64px]">
-          <div className="w-[min(1180px,calc(100%-40px))] mx-auto max-sm:w-[min(100%-24px,1180px)]">
-            <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 items-start">
+        <section className="py-[72px] max-sm:py-[54px]">
+          <div className="brand-shell">
+            <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-9 items-start">
               <ScrollReveal>
                 <span className="uppercase tracking-[0.18em] text-[0.72rem] font-bold text-[var(--color-accent)] inline-flex items-center gap-2.5">
                   <span className="w-7 h-px bg-[var(--color-accent)]" />
@@ -129,7 +129,7 @@ export default function StoryPage() {
                 <div className="mt-8 flex items-start gap-4 rounded-[8px] bg-white border border-[var(--color-line)] p-6">
                   <MapPin size={22} className="text-[var(--color-primary)] shrink-0 mt-1" />
                   <div>
-                    <strong className="block text-[var(--color-ink)]">Global Cosmetics Line's</strong>
+                    <strong className="block text-[var(--color-ink)]">Global Cosmetics Lines</strong>
                     <span className="block text-[0.9rem] text-[var(--color-muted)] mt-1">{page.address || '64/68 North Kamalapur, Dhaka - 1217, Bangladesh'}</span>
                   </div>
                 </div>
@@ -155,9 +155,9 @@ export default function StoryPage() {
         </section>
 
         {brands.length > 0 && (
-          <section className="pb-[110px] max-sm:pb-[76px]">
-            <div className="w-[min(1180px,calc(100%-40px))] mx-auto max-sm:w-[min(100%-24px,1180px)]">
-              <ScrollReveal className="text-center mb-12">
+          <section className="pb-[88px] max-sm:pb-[64px]">
+            <div className="brand-shell">
+              <ScrollReveal className="text-center mb-9">
                 <span className="uppercase tracking-[0.18em] text-[0.72rem] font-bold text-[var(--color-accent)]">{page.familyEyebrow || 'Brand Family'}</span>
                 <h2 className="mt-4 mb-0" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400, fontSize: 'clamp(2.3rem, 4.8vw, 4rem)', lineHeight: 1.04 }}>
                   {page.familyTitle || 'Softyy and Fresh Daily, one trusted house.'}
@@ -166,11 +166,11 @@ export default function StoryPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {brands.map((brand) => (
                   <ScrollReveal key={brand._id}>
-                    <Link to={`/brands/${brand.slug}`} className="group block h-full rounded-[8px] overflow-hidden bg-white border border-[var(--color-line)] premium-card transition-all duration-300 hover:-translate-y-1">
-                      <div className="aspect-[2.2/1] softyy-media-frame p-8 grid place-items-center">
+                    <Link to={`/brands/${brand.slug}`} className="image-card-smooth group block h-full overflow-hidden transition-all duration-300 hover:-translate-y-1">
+                      <div className="aspect-[2.2/1] rounded-[18px] bg-[linear-gradient(135deg,#fff,#f4f7ff)] p-5 grid place-items-center">
                         <img src={brand.logo} alt={brand.name} className="softyy-media-contain transition-transform duration-500 group-hover:scale-[1.02]" />
                       </div>
-                      <div className="p-7">
+                      <div className="px-5 pb-5 pt-6">
                         <h3 className="m-0 text-[1.7rem]" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400 }}>{brand.name}</h3>
                         <p className="m-0 mt-2 text-[0.9rem] leading-[1.65] text-[var(--color-muted)]">{brand.description}</p>
                       </div>

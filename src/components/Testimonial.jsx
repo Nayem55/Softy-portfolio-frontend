@@ -7,7 +7,7 @@ export default function Testimonial() {
   const testimonial = content?.testimonial || {
     stars: 5,
     quote: 'A beauty and skincare brand portfolio grounded in authenticity, accessible luxury, and customer confidence.',
-    person: 'SOFTYYBD BRAND DIRECTION',
+    person: 'GLOBAL COSMETICS LINES',
     role: 'Brand Portfolio Statement',
   }
 

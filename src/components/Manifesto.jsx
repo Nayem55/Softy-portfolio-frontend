@@ -8,7 +8,7 @@ export default function Manifesto() {
     eyebrow: 'Our philosophy',
     title: 'Healthy skin should feel simple, safe, and dependable.',
     description: 'We combine accessible pricing, careful sourcing, and active formulation standards so daily self-care feels transparent from first click to final application.',
-    quote: 'Softyy is built for customers who want beauty products they can trust on their skin and in their routine.',
+    quote: 'Global Cosmetics Lines is built for customers who want beauty products they can trust on their skin and in their routine.',
     stats: [
       { number: '01', label: 'Authentic sourcing' },
       { number: '02', label: 'Lab-led quality' },
@@ -18,9 +18,9 @@ export default function Manifesto() {
   }
 
   return (
-    <section id="values" className="py-[104px] max-sm:py-[72px]">
-      <div className="w-[min(1200px,calc(100%-48px))] mx-auto max-sm:w-[min(100%-24px,1200px)]">
-        <div className="grid grid-cols-[1.08fr_0.92fr] gap-16 items-start max-lg:grid-cols-1 max-lg:gap-10">
+    <section id="values" className="py-[82px] max-sm:py-[58px]">
+      <div className="brand-shell">
+        <div className="grid grid-cols-[1.08fr_0.92fr] gap-10 items-start max-lg:grid-cols-1 max-lg:gap-8">
           <ScrollReveal>
             <span className="section-kicker mb-5">{manifesto.eyebrow}</span>
             <h2 className="display-title mt-4 mb-0" style={{ fontSize: 'clamp(2.35rem, 4.6vw, 4.15rem)', lineHeight: 1.05 }}>
@@ -30,9 +30,9 @@ export default function Manifesto() {
               {manifesto.description}
             </p>
 
-            <div className="grid grid-cols-2 gap-px mt-10 bg-[var(--color-line)] border border-[var(--color-line)] max-sm:grid-cols-1">
+            <div className="grid grid-cols-2 gap-3 mt-8 max-sm:grid-cols-1">
               {manifesto.stats.map((stat, i) => (
-                <div key={i} className="bg-[var(--color-paper)] p-5">
+                <div key={i} className="bg-[var(--color-paper)] border border-[var(--color-line)] p-5 premium-card">
                   <strong className="display-title block text-[1.8rem] font-medium text-[var(--color-primary)]">
                     {stat.number}
                   </strong>
@@ -44,7 +44,7 @@ export default function Manifesto() {
 
           <ScrollReveal delay={0.15}>
             <div className="relative">
-              <div className="bg-[var(--color-ink)] p-9 text-white relative overflow-hidden premium-card">
+              <div className="bg-[var(--color-primary)] p-8 text-white relative overflow-hidden premium-card">
                 <div
                   className="absolute right-4 top-2 text-[10rem] leading-none opacity-10 pointer-events-none display-title"
                   style={{ fontFamily: 'var(--font-italiana)' }}
@@ -64,10 +64,10 @@ export default function Manifesto() {
                 </p>
                 <div className="mt-8 flex items-center gap-3">
                   <div className="w-10 h-10 rounded-[8px] bg-white/20 grid place-items-center">
-                    <span className="text-[0.8rem] font-bold">S</span>
+                    <span className="text-[0.8rem] font-bold">G</span>
                   </div>
                   <div>
-                    <strong className="block text-[0.85rem]">SoftyyBD</strong>
+                    <strong className="block text-[0.85rem]">Global Cosmetics Lines</strong>
                     <span className="text-[0.72rem] text-white/60">Brand Philosophy</span>
                   </div>
                 </div>
