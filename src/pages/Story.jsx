@@ -47,7 +47,7 @@ export default function StoryPage() {
     <>
       <Grain />
       <Navbar />
-      <main id="top" className="pt-[88px]">
+      <main id="top" className="story-page pt-[88px] max-md:pt-[66px]">
         <section className="py-[48px] max-sm:py-[34px]">
           <div className="brand-shell">
             <div className="grid grid-cols-1 lg:grid-cols-[1.02fr_0.98fr] gap-10 items-center">
@@ -56,7 +56,7 @@ export default function StoryPage() {
                   <span className="w-7 h-px bg-[var(--color-wine)]" />
                   {page.eyebrow || 'Our Story'}
                 </span>
-                <h1 className="mb-0" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400, fontSize: 'clamp(3rem, 7vw, 6rem)', lineHeight: 0.95 }}>
+                <h1 className="story-title display-title mb-0">
                   {page.title || 'A beauty house built around trust.'}
                 </h1>
                 <p className="mt-5 text-[var(--color-muted)] text-[1.05rem] leading-[1.75] max-w-[620px]">
@@ -74,13 +74,13 @@ export default function StoryPage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.12}>
-                <div className="image-card-smooth p-1.5">
-                  <img src={page.image || '/products/softyy/cover.jpg'} alt="Softyy skincare collection" className="w-full aspect-[1.28/1] object-cover rounded-[18px]" />
-                  <div className="grid grid-cols-3 gap-3 mt-6">
+                <div className="story-collection">
+                  <img src={page.image || '/products/softyy/cover.jpg'} alt="Softyy skincare collection" className="w-full aspect-[1.28/1] object-contain rounded-[18px]" />
+                  <div className="story-stats">
                     {stats.map(({ number, label }) => (
-                      <div key={label} className="rounded-[8px] bg-white/78 border border-white/70 p-4 text-center">
+                      <div key={label}>
                         <strong className="block text-[1.7rem] font-normal text-[var(--color-primary)]" style={{ fontFamily: 'var(--font-italiana)' }}>{number}</strong>
-                        <span className="text-[0.72rem] text-[var(--color-muted)]">{label}</span>
+                        <span className="text-[0.8rem] text-[var(--color-muted)]">{label}</span>
                       </div>
                     ))}
                   </div>
@@ -98,13 +98,14 @@ export default function StoryPage() {
                 {page.journeyTitle || 'From careful sourcing to confident daily use.'}
               </h2>
             </ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="story-chapters">
               {pageChapters.map((chapter, index) => (
                 <ScrollReveal key={chapter.title} delay={index * 0.08}>
-                  <article className="h-full rounded-[8px] bg-[var(--color-paper)] border border-[var(--color-line)] p-7 premium-card">
+                  <article className="story-chapter">
+                    <span className="chapter-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                     <span className="text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[var(--color-wine)]">{chapter.label}</span>
                     <h3 className="mt-5 mb-3 text-[1.6rem] leading-tight" style={{ fontFamily: 'var(--font-italiana)', fontWeight: 400 }}>{chapter.title}</h3>
-                    <p className="m-0 text-[0.92rem] leading-[1.7] text-[var(--color-muted)]">{chapter.text}</p>
+                    <p className="m-0 text-[1rem] leading-[1.7] text-[var(--color-muted)]">{chapter.text}</p>
                   </article>
                 </ScrollReveal>
               ))}
@@ -139,7 +140,7 @@ export default function StoryPage() {
                 {pagePromises.map((item, index) => {
                   return (
                   <ScrollReveal key={item.title} delay={index * 0.06}>
-                    <article className="h-full rounded-[8px] bg-white border border-[var(--color-line)] p-6 premium-card">
+                    <article className="story-promise h-full">
                       <BrandGlyph label={item.mark || String(index + 1).padStart(2, '0')} tone="light" className="mb-5" />
                       <h3 className="m-0 mb-2 text-[1rem] font-bold text-[var(--color-ink)]">{item.title}</h3>
                       <p className="m-0 text-[0.88rem] text-[var(--color-muted)] leading-[1.7]">{item.text}</p>

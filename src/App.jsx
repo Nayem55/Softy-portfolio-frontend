@@ -39,7 +39,8 @@ function ScrollToTop() {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    window.scrollTo({ top: 0, left: 0, behavior: reducedMotion ? 'instant' : 'smooth' })
   }, [pathname])
 
   return null

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useData } from '../context/DataContext'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -8,6 +8,7 @@ export default function Navbar() {
   const { content } = useData()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const menuButton = useRef(null)
   const location = useLocation()
   const isAdmin = location.pathname.startsWith('/admin')
 
@@ -26,13 +27,35 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   useEffect(() => {
     setMobileOpen(false)
   }, [location])
+
+  useEffect(() => {
+    if (!mobileOpen) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') {
+        setMobileOpen(false)
+        menuButton.current?.focus()
+      }
+    }
+    const desktop = window.matchMedia('(min-width: 1024px)')
+    const closeOnDesktop = () => { if (desktop.matches) setMobileOpen(false) }
+    document.addEventListener('keydown', closeOnEscape)
+    desktop.addEventListener('change', closeOnDesktop)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      document.removeEventListener('keydown', closeOnEscape)
+      desktop.removeEventListener('change', closeOnDesktop)
+    }
+  }, [mobileOpen])
 
   const resolveNavHref = (link) => {
     const text = link.text?.toLowerCase() || ''
@@ -60,6 +83,7 @@ export default function Navbar() {
 
   return (
     <>
+      <a className="skip-link" href="#top">Skip to content</a>
       <header
         className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-500 ${
           scrolled
@@ -67,7 +91,7 @@ export default function Navbar() {
             : 'bg-white border-b border-[var(--color-line)]'
         }`}
       >
-        <div className="brand-shell grid grid-cols-[1fr_auto_1fr] items-center h-[80px] max-md:flex max-md:justify-between max-md:h-[66px]">
+        <div className="brand-shell grid grid-cols-[1fr_auto_1fr] items-center h-[80px] max-lg:flex max-lg:justify-between max-md:h-[66px]">
           <Link to="/" className="flex items-center gap-2.5 shrink-0" aria-label={navbar.brandName || 'Global Cosmetics Lines'}>
             <img
               src={navbar.logo || '/brand/gcl-main-logo.png'}
@@ -76,14 +100,15 @@ export default function Navbar() {
             />
           </Link>
 
-          <nav className="hidden md:flex items-center justify-center gap-8">
+          <nav aria-label="Main navigation" className="hidden lg:flex items-center justify-center gap-6 xl:gap-8">
             {centerLinks.map((link, i) => {
               const href = resolveNavHref(link)
-              const isActive = location.pathname === href
+              const isActive = location.pathname === href || location.pathname.startsWith(`${href}/`)
               return (
                 <Link
                   key={i}
                   to={href}
+                  aria-current={isActive ? 'page' : undefined}
                   className={`nav-link text-[0.82rem] font-medium transition-colors duration-200 ${
                     isActive ? 'active text-[var(--color-primary)]' : 'text-[var(--color-ink)]'
                   }`}
@@ -94,7 +119,7 @@ export default function Navbar() {
             })}
           </nav>
 
-          <div className="hidden md:flex items-center justify-end gap-3">
+          <div className="hidden lg:flex items-center justify-end gap-3">
             <Link
               to="/contact"
               className="inline-flex items-center justify-center rounded-[12px] px-5 py-3 border border-[var(--color-line)] bg-white text-[var(--color-ink)] text-[0.84rem] font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--color-rose)]"
@@ -111,9 +136,13 @@ export default function Navbar() {
           </div>
 
           <button
-            className="md:hidden w-[44px] h-[44px] rounded-[8px] bg-white flex items-center justify-center border border-[var(--color-line)] text-[var(--color-primary)]"
+            ref={menuButton}
+            type="button"
+            className="lg:hidden w-[44px] h-[44px] rounded-[8px] bg-white flex items-center justify-center border border-[var(--color-line)] text-[var(--color-primary)]"
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Menu"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
           >
             <span className={`menu-mark ${mobileOpen ? 'open' : ''}`} aria-hidden="true" />
           </button>
@@ -127,9 +156,9 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[999] bg-white pt-[84px] px-6"
+            className="fixed inset-0 z-[999] bg-white pt-[96px] max-md:pt-[84px] px-6 pb-[100px] overflow-y-auto lg:hidden"
           >
-            <nav className="flex flex-col gap-2">
+            <nav id="mobile-navigation" aria-label="Mobile navigation" className="flex flex-col gap-2 max-w-[560px] mx-auto">
             {[...centerLinks, { text: 'Contact', href: '/contact' }].map((link, i) => {
                 const href = resolveNavHref(link)
                 const isActive = location.pathname === href
@@ -137,6 +166,7 @@ export default function Navbar() {
                   <Link
                     key={i}
                     to={href}
+                    aria-current={isActive ? 'page' : undefined}
                     className={`px-4 py-4 rounded-[8px] text-[1.1rem] font-medium transition-all border-b border-[var(--color-line)] ${
                       isActive
                         ? 'text-[var(--color-primary)] bg-[rgba(26,58,143,0.05)]'
@@ -166,7 +196,7 @@ export default function Navbar() {
           {dockLinks.map((item) => {
             const isActive = location.pathname === item.href || (item.href !== '/' && location.pathname.startsWith(item.href))
             return (
-              <Link key={item.href} to={item.href} className={isActive ? 'active' : ''}>
+              <Link key={item.href} to={item.href} aria-current={isActive ? 'page' : undefined} className={isActive ? 'active' : ''}>
                 <BrandGlyph label={item.mark} tone={isActive ? 'dockActive' : 'dock'} />
                 <span>{item.text}</span>
               </Link>

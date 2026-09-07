@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 
 export default function ScrollReveal({
@@ -10,6 +10,7 @@ export default function ScrollReveal({
 }) {
   const [isVisible, setIsVisible] = useState(false)
   const ref = useRef(null)
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,9 +32,9 @@ export default function ScrollReveal({
     <MotionTag
       ref={ref}
       className={`${className} ${grid}`.trim()}
-      initial={{ opacity: 0, y: 24 }}
-      animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-      transition={{ duration: 0.8, ease: 'easeOut', delay }}
+      initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+      animate={isVisible || reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+      transition={{ duration: reduceMotion ? 0 : 0.45, ease: 'easeOut', delay: reduceMotion ? 0 : delay }}
     >
       {children}
     </MotionTag>

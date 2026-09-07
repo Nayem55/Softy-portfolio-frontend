@@ -8,14 +8,14 @@ export const softyyContent = {
     eyebrow: 'Global Cosmetics Lines - care made close to home',
     title: 'Care that feels',
     titleItalic: 'quietly certain.',
-    description: 'A cleaner, warmer storefront for everyday skincare - easy to scan, easy to trust, and designed around the way real customers browse.',
+    description: 'Meet Softyy skincare and Fresh Daily essentials. Thoughtful care for your skin, your home, and the small rituals that make each day feel good.',
     primaryBtn: 'Explore the Collection',
     secondaryBtn: 'Our Story',
     image: '/editorial/softyy-hero-editorial.png',
     floatingCard: {
       small: 'Customer Focus',
       title: 'Oil control, without the noise.',
-      desc: 'Simple guidance, clear product intent.',
+      desc: 'Discover cleansers and targeted serum care for your daily routine.',
       image: '/products/softyy/acne-serum.jpg',
     },
     stats: [
@@ -216,6 +216,8 @@ const normalizeCompanyLanguage = (value, key = '') => {
     .replaceAll('Global Cosmetics Line\'s', 'Global Cosmetics Lines')
     .replaceAll('SOFTYYBD', 'GLOBAL COSMETICS LINES')
     .replaceAll('SoftyyBD', 'Global Cosmetics Lines')
+    .replaceAll('A cleaner, warmer storefront for everyday skincare - easy to scan, easy to trust, and designed around the way real customers browse.', softyyContent.hero.description)
+    .replaceAll('Simple guidance, clear product intent.', softyyContent.hero.floatingCard.desc)
 }
 
 const normalizeContent = (value) => {

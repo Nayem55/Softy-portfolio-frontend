@@ -10,14 +10,14 @@ export default function Hero() {
     eyebrow: 'Global Cosmetics Lines - care made close to home',
     title: 'Care that feels',
     titleItalic: 'quietly certain.',
-    description: 'A cleaner, warmer storefront for everyday skincare - easy to scan, easy to trust, and designed around the way real customers browse.',
+    description: 'Meet Softyy skincare and Fresh Daily essentials. Thoughtful care for your skin, your home, and the small rituals that make each day feel good.',
     primaryBtn: 'Explore the Collection',
     secondaryBtn: 'Our Story',
     image: '/editorial/softyy-hero-editorial.png',
     floatingCard: {
       small: 'Customer Focus',
       title: 'Oil Control',
-      desc: 'Simple guidance, clear product intent.',
+      desc: 'Discover cleansers and targeted serum care for your daily routine.',
       image: '/products/softyy/acne-serum.jpg',
     },
     stats: [
@@ -42,8 +42,7 @@ export default function Hero() {
               <span className="section-kicker mb-7 max-sm:mb-5">{hero.eyebrow}</span>
 
               <h1
-                className="display-title mt-0 mb-0 leading-[0.9] max-sm:leading-[0.92]"
-                style={{ fontSize: 'clamp(3.25rem, 6.7vw, 6.25rem)' }}
+                className="display-title hero-title mt-0 mb-0 leading-[0.98]"
               >
                 {hero.title}
                 <br />
@@ -110,7 +109,7 @@ export default function Hero() {
                   <span className="text-[0.62rem] uppercase tracking-[0.16em] text-white/62">{floatingCard.small || 'Customer Focus'}</span>
                   <div>
                     <strong className="display-title block text-[1.9rem] font-bold leading-[0.95] max-sm:text-[1.55rem]">{floatingCard.title || 'Oil Control'}</strong>
-                    <span className="block mt-4 text-[0.72rem] leading-[1.55] text-white/76">{floatingCard.desc || 'Simple guidance, clear product intent.'}</span>
+                    <span className="block mt-4 text-[0.8rem] leading-[1.55] text-white/85">{floatingCard.desc || 'Discover cleansers and targeted serum care for your daily routine.'}</span>
                   </div>
               </div>
             </div>

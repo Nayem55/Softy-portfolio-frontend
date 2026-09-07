@@ -16,9 +16,9 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-[var(--color-primary)] text-white pt-[52px] pb-[28px]">
+    <footer className="site-footer text-white pt-[52px] pb-[28px]">
       <div className="brand-shell">
-        <div className="grid grid-cols-[1.35fr_1fr_1fr_1fr] gap-[34px] max-md:grid-cols-2 max-sm:grid-cols-1">
+        <div className="footer-links">
           <div>
             <Link to="/" className="flex items-center gap-2.5">
               <img src="/brand/gcl-main-logo.png" alt="Global Cosmetics Lines" className="h-[48px] w-auto max-w-none bg-white rounded-[8px] px-3 py-1.5" />
