@@ -3,6 +3,7 @@ import { useData } from '../context/DataContext'
 import ScrollReveal from './ScrollReveal'
 import { Link } from 'react-router-dom'
 import BrandGlyph from './BrandGlyph'
+import { optimizedImageUrl } from '../utils/imageUrl'
 
 export default function Products({ limit, showHeader = true, showLink = false }) {
   const { products, brands } = useData()
@@ -123,7 +124,7 @@ export default function Products({ limit, showHeader = true, showLink = false })
                 >
                   <div className="relative aspect-square overflow-hidden rounded-[15px] bg-[var(--color-rose)]">
                     <img
-                      src={product.image}
+                      src={optimizedImageUrl(product.image, { width: 560 })}
                       alt={product.title}
                       loading="lazy"
                       decoding="async"

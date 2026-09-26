@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Grain from '../components/Grain'
 import ScrollReveal from '../components/ScrollReveal'
+import { optimizedImageUrl } from '../utils/imageUrl'
 
 export default function ProductDetail() {
   const { slug } = useParams()
@@ -59,7 +60,7 @@ export default function ProductDetail() {
 
               <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-10 items-start">
                 <div className="image-card-smooth aspect-square overflow-hidden p-1.5">
-                  <img src={product.image} alt={product.title} className="h-full w-full rounded-[18px] object-cover" />
+                  <img src={optimizedImageUrl(product.image, { width: 1000 })} alt={product.title} className="h-full w-full rounded-[18px] object-cover" />
                 </div>
 
                 <div>
@@ -136,7 +137,7 @@ export default function ProductDetail() {
                   <ScrollReveal key={rp._id} className="h-full">
                     <Link to={`/products/${rp.slug || rp._id}`} className="catalog-product-card group flex h-full flex-col overflow-hidden rounded-[20px] bg-white p-1.5 transition-all duration-300 hover:-translate-y-1">
                       <div className="aspect-[1.08/1] overflow-hidden rounded-[17px] bg-[var(--color-rose)]">
-                        <img src={rp.image} alt={rp.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.035]" />
+                        <img src={optimizedImageUrl(rp.image, { width: 560 })} alt={rp.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.035]" />
                       </div>
                       <div className="flex flex-1 flex-col px-4 pb-4 pt-4">
                         <span className="text-[0.65rem] font-extrabold text-[var(--color-primary)] uppercase tracking-[0.14em]">{rp.tag}</span>

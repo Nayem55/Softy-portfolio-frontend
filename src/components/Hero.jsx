@@ -2,6 +2,7 @@ import { useData } from '../context/DataContext'
 import { Link } from 'react-router-dom'
 import ScrollReveal from './ScrollReveal'
 import BrandGlyph from './BrandGlyph'
+import { optimizedImageUrl } from '../utils/imageUrl'
 
 export default function Hero() {
   const { content } = useData()
@@ -90,7 +91,7 @@ export default function Hero() {
             <div className="hero-art-reference max-sm:mt-1">
               <div className="hero-image-panel overflow-hidden border border-white/70 bg-[var(--color-paper)] p-1.5 grid place-items-center">
                 <img
-                  src={hero.image || '/editorial/softyy-hero-editorial.png'}
+                  src={optimizedImageUrl(hero.image || '/editorial/softyy-hero-editorial.png', { width: 2000, quality: 'auto:good' })}
                   alt="Global Cosmetics Lines skincare collection"
                   className="w-full h-full object-cover"
                 />
@@ -100,7 +101,7 @@ export default function Hero() {
 
               <div className="hero-mini-card overflow-hidden border border-[var(--color-line)] bg-white p-3 premium-card">
                 <div className="h-[116px] overflow-hidden rounded-[8px] media-frame">
-                  <img src={floatingCard.image || '/products/softyy/acne-serum.jpg'} alt={floatingCard.title || 'Global Cosmetics Lines featured product'} className="w-full h-full object-cover" />
+                  <img src={optimizedImageUrl(floatingCard.image || '/products/softyy/acne-serum.jpg', { width: 560 })} alt={floatingCard.title || 'Global Cosmetics Lines featured product'} className="w-full h-full object-cover" />
                 </div>
                 <span className="block mt-3 text-[0.82rem] leading-tight text-[var(--color-muted)]">Routine pick · daily care</span>
               </div>
