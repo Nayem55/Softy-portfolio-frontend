@@ -27,6 +27,8 @@ import ManageMarquee from './pages/admin/ManageMarquee'
 import ManageBrands from './pages/admin/ManageBrands'
 import ManageCategories from './pages/admin/ManageCategories'
 import ManagePages from './pages/admin/ManagePages'
+import ManageIntegrations from './pages/admin/ManageIntegrations'
+import MarketingIntegrations from './components/MarketingIntegrations'
 
 function ProtectedRoute({ children }) {
   const { admin, loading } = useAuth() || { admin: null, loading: true }
@@ -51,6 +53,7 @@ function App() {
     <Router>
       <AuthProvider>
         <DataProvider>
+          <MarketingIntegrations />
           <ScrollToTop />
           <Toaster position="top-right" toastOptions={{ style: { background: 'var(--color-paper)', color: 'var(--color-ink)', border: '1px solid var(--color-line)' } }} />
           <Routes>
@@ -78,6 +81,7 @@ function App() {
             <Route path="/admin/brands" element={<ProtectedRoute><ManageBrands /></ProtectedRoute>} />
             <Route path="/admin/categories" element={<ProtectedRoute><ManageCategories /></ProtectedRoute>} />
             <Route path="/admin/pages" element={<ProtectedRoute><ManagePages /></ProtectedRoute>} />
+            <Route path="/admin/integrations" element={<ProtectedRoute><ManageIntegrations /></ProtectedRoute>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </DataProvider>

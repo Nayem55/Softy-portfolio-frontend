@@ -19,6 +19,7 @@ const sections = [
   { title: 'Pages', desc: 'Edit collection, story, philosophy, and contact pages', icon: FileText, path: '/admin/pages', color: '#183b7a' },
   { title: 'Brands', desc: 'Manage brand portfolio and logos', icon: Package, path: '/admin/brands', color: '#7a183a' },
   { title: 'Categories', desc: 'Manage product categories', icon: Package, path: '/admin/categories', color: '#b22d5d' },
+  { title: 'Marketing & integrations', desc: 'Google Analytics, Facebook Pixel, Cloudinary', icon: Settings, path: '/admin/integrations', color: '#183b7a' },
 ]
 
 export default function AdminDashboard() {
