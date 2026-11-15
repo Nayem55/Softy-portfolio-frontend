@@ -11,4 +11,8 @@ export default defineConfig({
       '/api': 'http://localhost:1004'
     }
   }
+  ,preview: {
+    host: '0.0.0.0',
+    allowedHosts: ['globalcosmeticslines.com', 'www.globalcosmeticslines.com']
+  }
 })
