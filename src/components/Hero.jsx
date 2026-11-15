@@ -40,6 +40,10 @@ export default function Hero() {
   ]
   const floatingCard = activeHero.floatingCard || {}
 
+  if (hero.mode === 'banners') {
+    return <BannerSlider banners={(hero.banners || []).filter((banner) => banner.isActive !== false)} />
+  }
+
   return (
     <section className="min-h-[90vh] pt-[104px] pb-[56px] relative overflow-hidden hero-atmosphere bg-white max-xl:min-h-[620px] max-xl:pt-[94px] max-xl:pb-[38px] max-lg:min-h-0 max-lg:pt-[82px] max-lg:pb-[58px] max-sm:pt-[86px] max-sm:pb-[42px]">
       <div className="brand-shell relative">
@@ -126,4 +130,17 @@ export default function Hero() {
       </div>
     </section>
   )
+}
+
+function BannerSlider({ banners }) {
+  const [active, setActive] = useState(0)
+  useEffect(() => { setActive(0) }, [banners.length])
+  useEffect(() => {
+    if (banners.length < 2) return undefined
+    const timer = window.setInterval(() => setActive((index) => (index + 1) % banners.length), 6000)
+    return () => window.clearInterval(timer)
+  }, [banners.length])
+  if (!banners.length) return <section className="pt-[104px] min-h-[50vh] bg-white"><div className="brand-shell py-20"><h1 className="display-title">Homepage banners are being prepared.</h1></div></section>
+  const banner = banners[active]
+  return <section className="pt-[80px] bg-white" aria-label="Homepage banners"><div className="relative min-h-[620px] max-md:min-h-[520px] overflow-hidden bg-[var(--color-paper)]"><picture><source media="(max-width: 640px)" srcSet={banner.mobileImage || banner.image}/><img src={optimizedImageUrl(banner.image, { width: 2200, quality: 'auto:good' })} alt={banner.title || 'Global Cosmetics Lines banner'} className="absolute inset-0 w-full h-full object-cover"/></picture><div className="absolute inset-0 bg-black/30"/><div className="brand-shell relative min-h-[620px] max-md:min-h-[520px] flex items-end pb-16 max-md:pb-12"><div className="max-w-[640px] text-white"><p className="text-lg mb-3">{banner.subtitle}</p><h1 className="display-title text-white text-[clamp(3rem,7vw,6.5rem)] leading-[.9]">{banner.title}</h1>{banner.description && <p className="mt-6 text-lg leading-relaxed text-white/90">{banner.description}</p>}{banner.linkText && banner.linkUrl && <Link to={banner.linkUrl} className="inline-flex mt-7 px-5 py-3 bg-white text-[var(--color-ink)] font-bold rounded-[12px]">{banner.linkText}</Link>}</div></div>{banners.length > 1 && <div className="absolute bottom-7 left-0 right-0 flex justify-center gap-2">{banners.map((item, index) => <button key={`${item.title}-${index}`} type="button" onClick={() => setActive(index)} aria-label={`Show banner ${index + 1}`} className={`h-2 rounded-full transition-all ${index === active ? 'w-8 bg-white' : 'w-2 bg-white/60'}`}/>)}</div>}</div></section>
 }
