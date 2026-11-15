@@ -443,15 +443,15 @@ const fallbackProducts = [
   },
 ]
 
-const normalizeProducts = (data) => isDemoContent(data) ? fallbackProducts : data
-const normalizeBrands = (data) => isDemoContent(data) ? fallbackBrands : data
-const normalizeCategories = (data) => isDemoContent(data) ? fallbackCategories : data
+const normalizeProducts = (data) => data
+const normalizeBrands = (data) => data
+const normalizeCategories = (data) => data
 
 export function DataProvider({ children }) {
   const [content, setContent] = useState(null)
-  const [products, setProducts] = useState(fallbackProducts)
-  const [brands, setBrands] = useState(fallbackBrands)
-  const [categories, setCategories] = useState(fallbackCategories)
+  const [products, setProducts] = useState([])
+  const [brands, setBrands] = useState([])
+  const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
 
   const fetchContent = useCallback(async () => {
@@ -466,33 +466,33 @@ export function DataProvider({ children }) {
   const fetchProducts = useCallback(async (params = {}) => {
     try {
       const res = await api.get('/products', { params })
-      const data = res.data.length > 0 ? normalizeProducts(res.data) : fallbackProducts
+      const data = Array.isArray(res.data) ? normalizeProducts(res.data) : []
       setProducts(data)
       return data
     } catch (err) {
       console.error('Failed to fetch products:', err)
-      setProducts(fallbackProducts)
-      return fallbackProducts
+      setProducts([])
+      return []
     }
   }, [])
 
   const fetchBrands = useCallback(async () => {
     try {
       const res = await api.get('/brands')
-      setBrands(res.data.length > 0 ? normalizeBrands(res.data) : fallbackBrands)
+      setBrands(Array.isArray(res.data) ? normalizeBrands(res.data) : [])
     } catch (err) {
       console.error('Failed to fetch brands:', err)
-      setBrands(fallbackBrands)
+      setBrands([])
     }
   }, [])
 
   const fetchCategories = useCallback(async () => {
     try {
       const res = await api.get('/categories')
-      setCategories(res.data.length > 0 ? normalizeCategories(res.data) : fallbackCategories)
+      setCategories(Array.isArray(res.data) ? normalizeCategories(res.data) : [])
     } catch (err) {
       console.error('Failed to fetch categories:', err)
-      setCategories(fallbackCategories)
+      setCategories([])
     }
   }, [])
 

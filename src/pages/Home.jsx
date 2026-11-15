@@ -18,7 +18,7 @@ export default function Home() {
       <main id="top">
         <Hero />
         <Marquee />
-        <Products showLink={true} />
+        <Products limit={6} showLink={true} />
         <BrandsSection />
         <Manifesto />
         <Story />

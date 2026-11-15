@@ -9,14 +9,7 @@ export default function Products({ limit, showHeader = true, showLink = false })
   const { products, brands } = useData()
   const [activeFilter, setActiveFilter] = useState('all')
 
-  const allProducts = products.length > 0 ? products : [
-    { _id: '1', title: 'Lemon Face Wash', desc: 'Oil Control · Acne Control · Brightening Deep Cleansing', tag: 'Face Wash', image: '/products/softyy/lemon-face-wash.jpg', size: 'large', price: 350, brandId: 'brand-softyy' },
-    { _id: '2', title: 'Milk Expert Face Wash', desc: 'Brightening · Extra Moisturizing · Gentle Cleansing', tag: 'Face Wash', image: '/products/softyy/milk-face-wash.jpg', size: 'side', price: 350, brandId: 'brand-softyy' },
-    { _id: '3', title: 'Acne Control Serum', desc: '2% Salicylic Acid · 5% Niacinamide · 30ml', tag: 'Serum', image: '/products/softyy/acne-serum.jpg', size: 'third', price: 450, brandId: 'brand-softyy' },
-    { _id: '4', title: 'Papaya Face Wash', desc: 'Glow Boost · Anti-Blemish · Gentle Deep Clean', tag: 'Face Wash', image: '/products/softyy/papaya-face-wash.jpg', size: 'third', price: 350, brandId: 'brand-softyy' },
-    { _id: '5', title: 'Salicylic Acid Face Wash', desc: 'Acne Control · Deep Pore Cleansing · Blackheads', tag: 'Face Wash', image: '/products/softyy/salicylic-face-wash.jpg', size: 'third', price: 350, brandId: 'brand-softyy' },
-    { _id: '6', title: 'Milk Soothing Gel', desc: 'Deep Moisturizing · Sunburn Recovery · 250gm', tag: 'Gel', image: '/products/softyy/milk-soothing-gel.jpg', size: 'third', price: 480, brandId: 'brand-softyy' },
-  ]
+  const allProducts = products
 
   const filters = [
     { key: 'all', label: 'All products' },
@@ -104,7 +97,7 @@ export default function Products({ limit, showHeader = true, showLink = false })
                   ))}
                 </div>
                 <span aria-live="polite" className="text-[0.8rem] text-[var(--color-muted)]">
-                  {displayProducts.length} products
+                  {filteredProducts.length} products
                 </span>
               </div>
             </div>
@@ -156,7 +149,9 @@ export default function Products({ limit, showHeader = true, showLink = false })
           })}
         </div>
 
-        {showLink && (
+        {!displayProducts.length && <div className="py-12 text-center text-[var(--color-muted)]">No products are available for this selection yet.</div>}
+
+        {showLink && filteredProducts.length > displayProducts.length && (
           <ScrollReveal className="text-center mt-9">
             <Link
               to="/collection"
