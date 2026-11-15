@@ -17,6 +17,7 @@ const sections = [
   { title: 'Navbar', desc: 'Navigation bar and brand', icon: Navigation, path: '/admin/navbar', color: '#b22d5d' },
   { title: 'Marquee', desc: 'Scrolling marquee text items', icon: Radio, path: '/admin/marquee', color: '#54142c' },
   { title: 'Pages', desc: 'Edit collection, story, philosophy, and contact pages', icon: FileText, path: '/admin/pages', color: '#183b7a' },
+  { title: 'Blog posts', desc: 'Create, edit, publish, and remove journal posts', icon: BookOpen, path: '/admin/blogs', color: '#54142c' },
   { title: 'Brands', desc: 'Manage brand portfolio and logos', icon: Package, path: '/admin/brands', color: '#7a183a' },
   { title: 'Categories', desc: 'Manage product categories', icon: Package, path: '/admin/categories', color: '#b22d5d' },
   { title: 'Marketing & integrations', desc: 'Google Analytics, Facebook Pixel, Cloudinary', icon: Settings, path: '/admin/integrations', color: '#183b7a' },

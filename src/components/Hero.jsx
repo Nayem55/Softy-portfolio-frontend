@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { useData } from '../context/DataContext'
 import { Link } from 'react-router-dom'
 import ScrollReveal from './ScrollReveal'
@@ -27,12 +28,17 @@ export default function Hero() {
       { label: 'Support you can reach', sublabel: '' },
     ],
   }
-  const stats = hero.stats?.length ? hero.stats : [
+  const slides = Array.isArray(hero.slides) && hero.slides.length ? hero.slides : [hero]
+  const [activeSlide, setActiveSlide] = useState(0)
+  useEffect(() => { setActiveSlide(0) }, [slides.length])
+  useEffect(() => { if (slides.length < 2) return undefined; const timer = window.setInterval(() => setActiveSlide(index => (index + 1) % slides.length), 6000); return () => window.clearInterval(timer) }, [slides.length])
+  const activeHero = { ...hero, ...slides[activeSlide] }
+  const stats = activeHero.stats?.length ? activeHero.stats : [
     { label: 'Everyday-first formulas', sublabel: '' },
     { label: 'Careful product curation', sublabel: '' },
     { label: 'Support you can reach', sublabel: '' },
   ]
-  const floatingCard = hero.floatingCard || {}
+  const floatingCard = activeHero.floatingCard || {}
 
   return (
     <section className="min-h-[90vh] pt-[104px] pb-[56px] relative overflow-hidden hero-atmosphere bg-white max-xl:min-h-[620px] max-xl:pt-[94px] max-xl:pb-[38px] max-lg:min-h-0 max-lg:pt-[82px] max-lg:pb-[58px] max-sm:pt-[86px] max-sm:pb-[42px]">
@@ -40,20 +46,20 @@ export default function Hero() {
         <div className="grid grid-cols-[0.98fr_1.02fr] gap-[56px] items-center min-h-[calc(90vh-160px)] max-xl:min-h-[470px] max-xl:items-start max-xl:gap-[40px] max-lg:grid-cols-1 max-lg:min-h-0 max-lg:gap-[34px]">
           <ScrollReveal>
             <div className="max-lg:text-center max-sm:text-left">
-              <span className="section-kicker mb-7 max-sm:mb-5">{hero.eyebrow}</span>
+              <span className="section-kicker mb-7 max-sm:mb-5">{activeHero.eyebrow}</span>
 
               <h1
                 className="display-title hero-title mt-0 mb-0 leading-[0.98]"
               >
-                {hero.title}
+                {activeHero.title}
                 <br />
                 <em className="not-italic" style={{ fontStyle: 'italic', color: 'var(--color-primary)' }}>
-                  {hero.titleItalic}
+                  {activeHero.titleItalic}
                 </em>
               </h1>
 
               <p className="max-w-[585px] text-[1.08rem] my-[22px] leading-[1.45] text-[var(--color-muted)] max-lg:mx-auto max-sm:mx-0 max-sm:my-[20px] max-sm:text-[0.95rem] max-sm:leading-[1.7]">
-                {hero.description}
+                {activeHero.description}
               </p>
 
               <div className="flex gap-3 flex-wrap max-lg:justify-center max-sm:grid max-sm:grid-cols-2 max-sm:justify-stretch">
@@ -61,14 +67,14 @@ export default function Hero() {
                   to="/collection"
                   className="inline-flex items-center justify-center gap-2 rounded-[12px] px-5 py-3.5 gcl-button text-white font-bold text-[0.88rem] transition-all duration-300 hover:-translate-y-0.5 max-sm:px-4"
                 >
-                  {hero.primaryBtn}
+                  {activeHero.primaryBtn}
                   <BrandGlyph label="arrow" tone="button" />
                 </Link>
                 <Link
                   to="/story"
                   className="inline-flex items-center justify-center gap-2 rounded-[12px] px-5 py-3.5 border border-[var(--color-line)] bg-white text-[var(--color-ink)] font-bold text-[0.88rem] transition-all duration-300 hover:bg-[var(--color-rose)] max-sm:px-4"
                 >
-                  {hero.secondaryBtn}
+                  {activeHero.secondaryBtn}
                 </Link>
               </div>
 
@@ -91,7 +97,7 @@ export default function Hero() {
             <div className="hero-art-reference max-sm:mt-1">
               <div className="hero-image-panel overflow-hidden border border-white/70 bg-[var(--color-paper)] p-1.5 grid place-items-center">
                 <img
-                  src={optimizedImageUrl(hero.image || '/editorial/softyy-hero-editorial.png', { width: 2000, quality: 'auto:good' })}
+                  src={optimizedImageUrl(activeHero.image || '/editorial/softyy-hero-editorial.png', { width: 2000, quality: 'auto:good' })}
                   alt="Global Cosmetics Lines skincare collection"
                   className="w-full h-full object-cover"
                 />
@@ -116,6 +122,7 @@ export default function Hero() {
             </div>
           </ScrollReveal>
         </div>
+        {slides.length > 1 && <div className="flex justify-center gap-2 mt-5" aria-label="Hero banners">{slides.map((slide, index) => <button key={slide.id || slide.title || index} type="button" onClick={() => setActiveSlide(index)} aria-label={`Show banner ${index + 1}`} className={`h-2 rounded-full transition-all ${activeSlide === index ? 'w-8 bg-[var(--color-primary)]' : 'w-2 bg-[var(--color-line)]'}`} />)}</div>}
       </div>
     </section>
   )

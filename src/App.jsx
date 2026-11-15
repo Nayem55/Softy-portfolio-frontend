@@ -28,6 +28,9 @@ import ManageBrands from './pages/admin/ManageBrands'
 import ManageCategories from './pages/admin/ManageCategories'
 import ManagePages from './pages/admin/ManagePages'
 import ManageIntegrations from './pages/admin/ManageIntegrations'
+import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
+import ManageBlogs from './pages/admin/ManageBlogs'
 import MarketingIntegrations from './components/MarketingIntegrations'
 
 function ProtectedRoute({ children }) {
@@ -67,6 +70,8 @@ function App() {
             <Route path="/categories" element={<Categories />} />
             <Route path="/categories/:slug" element={<CategoryDetail />} />
             <Route path="/products/:slug" element={<ProductDetail />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
             <Route path="/admin/hero" element={<ProtectedRoute><ManageHero /></ProtectedRoute>} />
@@ -82,6 +87,7 @@ function App() {
             <Route path="/admin/categories" element={<ProtectedRoute><ManageCategories /></ProtectedRoute>} />
             <Route path="/admin/pages" element={<ProtectedRoute><ManagePages /></ProtectedRoute>} />
             <Route path="/admin/integrations" element={<ProtectedRoute><ManageIntegrations /></ProtectedRoute>} />
+            <Route path="/admin/blogs" element={<ProtectedRoute><ManageBlogs /></ProtectedRoute>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </DataProvider>

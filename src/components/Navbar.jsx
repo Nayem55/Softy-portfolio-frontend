@@ -72,6 +72,7 @@ export default function Navbar() {
     { text: 'Our brands', href: '/brands' },
     { text: 'Philosophy', href: '/philosophy' },
     { text: 'Our story', href: '/story' },
+    { text: 'Journal', href: '/blog' },
   ].map((required) => navbar.links?.find((link) => resolveNavHref(link) === required.href) || required)
 
   const dockLinks = [

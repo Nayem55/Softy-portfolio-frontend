@@ -81,7 +81,9 @@ export default function ManageHero() {
   const handleSave = async () => {
     setSaving(true)
     try {
-      await updateContent({ hero: form })
+      const currentSlide = { eyebrow: form.eyebrow, title: form.title, titleItalic: form.titleItalic, description: form.description, primaryBtn: form.primaryBtn, secondaryBtn: form.secondaryBtn, image: form.image, floatingCard: form.floatingCard, stats: form.stats }
+      const otherSlides = Array.isArray(form.slides) ? form.slides.slice(1) : []
+      await updateContent({ hero: { ...form, ...currentSlide, slides: [currentSlide, ...otherSlides] } })
       toast.success('Hero section updated!')
     } catch (err) {
       toast.error(err.response?.data?.error || 'Save failed')
@@ -178,6 +180,13 @@ export default function ManageHero() {
               className="w-full px-4 py-2.5 rounded-xl border border-[var(--color-line)] bg-white text-sm outline-none focus:border-[var(--color-wine)] transition-colors resize-none"
             />
           </div>
+        </div>
+
+        {/* Hero Image */}
+        <div className="bg-[var(--color-paper)] rounded-2xl p-6 border border-[var(--color-line)] space-y-3">
+          <div className="flex items-center justify-between"><h2 className="text-sm font-bold text-[var(--color-ink)] uppercase tracking-wider">Additional slider banners</h2><button type="button" onClick={() => handleChange('slides', [...(form.slides || [form]), { eyebrow: '', title: '', titleItalic: '', description: '', primaryBtn: form.primaryBtn, secondaryBtn: form.secondaryBtn, image: '', floatingCard: form.floatingCard, stats: form.stats }])} className="text-xs font-bold text-[var(--color-wine)]">Add banner</button></div>
+          <p className="text-xs text-[var(--color-muted)]">The fields above edit banner 1. Use this list to edit the extra banners; each banner can have the same hero fields.</p>
+          <textarea value={JSON.stringify((form.slides || [form]).slice(1), null, 2)} onChange={(e) => { try { const extra = JSON.parse(e.target.value); if (Array.isArray(extra)) handleChange('slides', [form, ...extra]) } catch {} }} rows={12} className="w-full px-4 py-3 rounded-xl border border-[var(--color-line)] bg-white text-xs font-mono outline-none focus:border-[var(--color-wine)]" aria-label="Additional slider banner data" />
         </div>
 
         {/* Hero Image */}
