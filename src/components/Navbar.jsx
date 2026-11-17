@@ -73,6 +73,7 @@ export default function Navbar() {
     { text: 'Philosophy', href: '/philosophy' },
     { text: 'Our story', href: '/story' },
     { text: 'Journal', href: '/blog' },
+    { text: 'Gallery', href: '/gallery' },
   ].map((required) => navbar.links?.find((link) => resolveNavHref(link) === required.href) || required)
 
   const dockLinks = [
